@@ -1,4 +1,4 @@
-import Priyanka from '../assets/priyanka.png';
+import Priyanka from '../assets/priyanka-Color.png';
 import SplitText from '../Components/SplitText';
 const Hero = () => {
     return (
@@ -32,13 +32,13 @@ const Hero = () => {
                 <div
                     style={{
                         position: 'absolute',
-                        top: '-170px',
+                        top: '-190px',
                         zIndex: 2,
                         fontSize: '15rem',
                     }}
                 >
                     <SplitText
-                        text="Priyanka"
+                        text="Priyanka_"
                         className=""
                         splitType="chars"
                         delay={250}
@@ -110,7 +110,7 @@ const Hero = () => {
                 <div
                     style={{
                         position: 'absolute',
-                        bottom: '60px',
+                        bottom: '30px',
                         right: '60px',
                         width: '50px',
                         height: '50px',
@@ -119,7 +119,7 @@ const Hero = () => {
                         animation: 'pulse 2s infinite',
                         zIndex: 2,
                     }}
-                > <p style={{ margin: 0, transform: 'translateX(-100px) translateY(18px)' }}>Talk to my PA</p></div>
+                > <p style={{ margin: 0, transform: 'translateX(-100px) translateY(18px)' }}>"Call my PA"</p></div>
             </section>
 
 

@@ -1,0 +1,15 @@
+.pixel-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000; /* Make sure it's on top */
+  pointer-events: auto; /* Allow mouse interaction */
+}
+
+.goo-filter-container {
+  position: absolute;
+  width: 0;
+  height: 0;
+}

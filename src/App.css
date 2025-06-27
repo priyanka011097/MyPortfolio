@@ -10,7 +10,7 @@
 .horizontal-scroll {
   display: flex;
   flex-direction: row;
-  overflow-x: auto;
+  overflow-x: hidden;
   overflow-y: hidden;
   scroll-behavior: smooth;
   height: 100vh;

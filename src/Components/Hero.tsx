@@ -64,10 +64,10 @@ const Hero = () => {
                 >
                     <ul>
                         <li>
-                            Something about me  which i am <br />
-                            <span style={{ color: '#a855f7', fontWeight: 'bold' }}>
-                                Proud of
+                            <span style={{ fontWeight: 'bold' }}>
+                                Proud of <br />
                             </span>
+                            Architecting agent-based  AI in <br />Unity gaming platform <br />
                         </li>
                     </ul>
                 </div>
@@ -101,7 +101,7 @@ const Hero = () => {
                     </h2>
                     <ul>
                         <li style={{ whiteSpace: 'normal', wordBreak: 'break-word' }}>
-                            I am good and smart  and a little crazy but i am amazing
+                            Building smart, scalable apps with AI and cloud power
                         </li>
 
                     </ul>

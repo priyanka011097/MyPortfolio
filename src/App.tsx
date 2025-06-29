@@ -2,6 +2,8 @@ import { useEffect, useRef } from 'react'
 import Hero from './Components/Hero'
 import './App.css'
 import About from './Components/About'
+import Project from './Components/Project'
+import ShowOff from './Components/ShowOff'
 
 function App() {
   const scrollRef = useRef<HTMLDivElement>(null)
@@ -27,6 +29,8 @@ function App() {
     <div ref={scrollRef} className="horizontal-scroll">
       <Hero />
       <About />
+      <Project />
+      <ShowOff />
     </div>
   )
 }

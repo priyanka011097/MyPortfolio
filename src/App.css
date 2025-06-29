@@ -31,3 +31,11 @@
   height: 100%;
   overflow-x: auto;
 }
+
+.scroll-wrapper::-webkit-scrollbar {
+  display: none;
+}
+.scroll-wrapper {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}

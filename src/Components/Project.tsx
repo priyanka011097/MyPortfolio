@@ -98,20 +98,19 @@ const Project = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          overflow: "hidden",
+        //   margin: "2rem 2rem 2rem 2rem",
         }}
       >
-       
         <div
+          className="scroll-wrapper"
           style={{
             width: "100%",
-            height: "100%",
-            padding: "2rem 0",
+            height: "80%",
+
             boxSizing: "border-box",
             WebkitOverflowScrolling: "touch",
           }}
-        > 
-       
+        >
           <ChromaGrid
             items={items}
             radius={300}

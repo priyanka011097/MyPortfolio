@@ -110,8 +110,8 @@ const Hero = () => {
                 <div
                     style={{
                         position: 'absolute',
-                        bottom: '30px',
-                        right: '60px',
+                        bottom: '40px',
+                        right: '10px',
                         width: '50px',
                         height: '50px',
                         borderRadius: '50%',
@@ -119,7 +119,7 @@ const Hero = () => {
                         animation: 'pulse 2s infinite',
                         zIndex: 2,
                     }}
-                > <p style={{ margin: 0, transform: 'translateX(-100px) translateY(18px)' }}>"Call my PA"</p></div>
+                > <p style={{ margin: 0, transform: 'translateX(-100px) translateY(18px)' }}>Call my PA &rarr; </p></div>
             </section>
 
 

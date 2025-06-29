@@ -98,7 +98,6 @@ const Project = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-        //   margin: "2rem 2rem 2rem 2rem",
         }}
       >
         <div
@@ -106,7 +105,6 @@ const Project = () => {
           style={{
             width: "100%",
             height: "80%",
-
             boxSizing: "border-box",
             WebkitOverflowScrolling: "touch",
           }}

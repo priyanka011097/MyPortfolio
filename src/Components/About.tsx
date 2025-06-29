@@ -3,6 +3,8 @@ import twitterIcon from "../assets/icons/twitter.svg";
 import instagramIcon from "../assets/icons/instagram.svg";
 import youtubeIcon from "../assets/icons/youtube.svg";
 import facebookIcon from "../assets/icons/facebook.svg";
+import CircularGallery from "../Components/AdditionStyles/CircularGallery";
+import SpotlightCard from "../Components/AdditionStyles/SpotlightCard";
 
 const About = () => {
   return (
@@ -25,18 +27,42 @@ const About = () => {
       >
         <div
           style={{
-            position: "relative",
+            position: "absolute",
+            display: "flex",
+            top: "60px",
+            left: "0px",
+            zIndex: 10,
+          }}
+        >
+          <SpotlightCard
+            spotlightColor="rgba(0, 229, 255, 0.2)"
+          >
+            github
+          </SpotlightCard>
+          <SpotlightCard
+            spotlightColor="rgba(0, 229, 255, 0.2)"
+          >
+            leetcode
+          </SpotlightCard>
+          <SpotlightCard
+            spotlightColor="rgba(0, 229, 255, 0.2)"
+          >
+            hackerrack
+          </SpotlightCard>
+ 
+        </div>
+        <div
+          style={{
             width: "100%",
             height: "100%",
             overflow: "hidden",
           }}
         >
-          {/* Move to top-left */}
           <div
             style={{
               position: "absolute",
-              top: "20px",
-              left: "20px",
+              top: "0px",
+              left: "600px",
               zIndex: 10,
             }}
           >
@@ -201,6 +227,10 @@ const About = () => {
               </p>
             </div>
           </div>
+        </div>
+
+        <div style={{ height: "700px", width: "700px", zIndex: 10 }}>
+          <CircularGallery bend={2} textColor="#ffffff" borderRadius={0.05} />
         </div>
 
         <div

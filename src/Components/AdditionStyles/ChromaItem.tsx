@@ -156,7 +156,7 @@ export const ChromaGrid: React.FC<ChromaGridProps> = ({
 
   return (
     <div className="scroll">
-      <h1 className="text">Projects</h1>
+    
 
       <div
         ref={rootRef}

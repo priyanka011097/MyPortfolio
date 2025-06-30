@@ -228,10 +228,20 @@ const About = () => {
             </div>
           </div>
         </div>
-
-        <div style={{ height: "700px", width: "700px", zIndex: 10 }}>
-          <CircularGallery bend={2} textColor="#ffffff" borderRadius={0.05} />
+            <div
+          style={{
+            position: "absolute",
+            bottom: "90px",
+            right: "90px",
+            display: "flex",
+            gap: "16px",
+            zIndex: 10,
+          }}
+        >
+        <div style={{ height: "500px", width: "490px", zIndex: 10,}}>
+          <CircularGallery bend={3} textColor="#ffffff" borderRadius={0.05} />
         </div>
+</div>
 
         <div
           style={{

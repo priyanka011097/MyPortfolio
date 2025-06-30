@@ -38,12 +38,12 @@
   }
 }
 .text {
-  width: 80%;
+  width: 100%;
   text-align: left;
   color: #fff;
   font-size: 2rem;
   font-weight: bold;
-  margin: 20px auto;
+  margin: 10px 0px;
   z-index: 1;
 }
 

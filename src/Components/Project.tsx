@@ -100,15 +100,17 @@ const Project = () => {
           justifyContent: "center",
         }}
       >
+        
         <div
           className="scroll-wrapper"
           style={{
-            width: "100%",
-            height: "80%",
+            width: "80%",
+            height: "70%",
             boxSizing: "border-box",
             WebkitOverflowScrolling: "touch",
           }}
         >
+          <h1 className="text">Projects</h1>
           <ChromaGrid
             items={items}
             radius={300}

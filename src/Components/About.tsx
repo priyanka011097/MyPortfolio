@@ -3,6 +3,7 @@ import twitterIcon from "../assets/icons/twitter.svg";
 import instagramIcon from "../assets/icons/instagram.svg";
 import youtubeIcon from "../assets/icons/youtube.svg";
 import facebookIcon from "../assets/icons/facebook.svg";
+import mediumIcon from "../assets/icons/medium.svg";
 import CircularGallery from "../Components/AdditionStyles/CircularGallery";
 import SpotlightCard from "../Components/AdditionStyles/SpotlightCard";
 
@@ -28,28 +29,36 @@ const About = () => {
         <div
           style={{
             position: "absolute",
-            display: "flex",
-            top: "60px",
-            left: "0px",
+            top: "40px",
+            left: "-5px",
             zIndex: 10,
           }}
         >
-          <SpotlightCard
-            spotlightColor="rgba(0, 229, 255, 0.2)"
-          >
+          <CircularText
+            text="CLICK*FOR*MY*PLAYLIST*  *"
+            onHover="speedUp"
+            spinDuration={20}
+            className="custom-class"
+          />
+        </div>
+        <div
+          style={{
+            position: "absolute",
+            display: "flex",
+            top: "150px",
+            left: "200px",
+            zIndex: 10,
+          }}
+        >
+          <SpotlightCard spotlightColor="rgba(0, 229, 255, 0.2)">
             github
           </SpotlightCard>
-          <SpotlightCard
-            spotlightColor="rgba(0, 229, 255, 0.2)"
-          >
+          <SpotlightCard spotlightColor="rgba(0, 229, 255, 0.2)">
             leetcode
           </SpotlightCard>
-          <SpotlightCard
-            spotlightColor="rgba(0, 229, 255, 0.2)"
-          >
+          <SpotlightCard spotlightColor="rgba(0, 229, 255, 0.2)">
             hackerrack
           </SpotlightCard>
- 
         </div>
         <div
           style={{
@@ -58,21 +67,6 @@ const About = () => {
             overflow: "hidden",
           }}
         >
-          <div
-            style={{
-              position: "absolute",
-              top: "0px",
-              left: "600px",
-              zIndex: 10,
-            }}
-          >
-            <CircularText
-              text="CLICK*FOR*MY*PLAYLIST*  *"
-              onHover="speedUp"
-              spinDuration={20}
-              className="custom-class"
-            />
-          </div>
           <div
             style={{
               position: "absolute",
@@ -150,7 +144,6 @@ const About = () => {
                   Generative AI{" "}
                 </span>{" "}
                 Certificate – Upgrad
-                {/* Hidden Hover Images */}
                 <img
                   id="diploma-img"
                   src="src/assets/certi.jpg"
@@ -228,20 +221,20 @@ const About = () => {
             </div>
           </div>
         </div>
-            <div
+        <div
           style={{
             position: "absolute",
-            bottom: "90px",
-            right: "90px",
+            bottom: "150px",
+            right: "60px",
             display: "flex",
             gap: "16px",
             zIndex: 10,
           }}
         >
-        <div style={{ height: "500px", width: "490px", zIndex: 10,}}>
-          <CircularGallery bend={3} textColor="#ffffff" borderRadius={0.05} />
+          <div style={{ height: "550px", width: "490px", zIndex: 10 }}>
+            <CircularGallery bend={3} textColor="#ffffff" borderRadius={0.05} />
+          </div>
         </div>
-</div>
 
         <div
           style={{
@@ -300,6 +293,19 @@ const About = () => {
             <img
               src={facebookIcon}
               alt="Facebook"
+              width="30"
+              height="30"
+              style={{ filter: "invert(100%) brightness(200%)" }}
+            />
+          </a>
+          <a
+            href="https://facebook.com/your_handle"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src={mediumIcon}
+              alt="Medium"
               width="30"
               height="30"
               style={{ filter: "invert(100%) brightness(200%)" }}

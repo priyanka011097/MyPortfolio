@@ -156,8 +156,6 @@ export const ChromaGrid: React.FC<ChromaGridProps> = ({
 
   return (
     <div className="scroll">
-    
-
       <div
         ref={rootRef}
         className={`chroma-grid ${className}`}

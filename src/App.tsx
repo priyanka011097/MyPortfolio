@@ -21,7 +21,7 @@ function App() {
       // 👉 Otherwise, scroll horizontally across sections
       if (e.deltaY === 0) return
       e.preventDefault()
-      container.scrollLeft += e.deltaY
+      container.scrollLeft += e.deltaY * 3
     }
 
     container.addEventListener('wheel', handleWheel, { passive: false })

@@ -1,4 +1,4 @@
-import Priyanka from '../assets/priyanka-Color.png';
+import Priyanka from '../assets/priyanka_new.png';
 import SplitText from '../Components/SplitText';
 const Hero = () => {
     return (

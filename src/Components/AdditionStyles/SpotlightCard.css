@@ -1,13 +1,15 @@
 .card-spotlight {
   position: relative;
+  width: 120px;
+  height: 90px;
   border-radius: 1.5rem;
   border: 1px solid #222;
-  background-color: #00000005;
+  background-color: #68686821;
   padding: 2.5rem;
   overflow: hidden;
   --mouse-x: 50%;
   --mouse-y: 50%;
-  --spotlight-color: rgba(255, 255, 255, 0.05);
+  --spotlight-color: rgba(255, 255, 255, 0.616);
   margin: 1rem;
 }
 

@@ -1,15 +1,83 @@
-
 import twitterIcon from "../assets/icons/twitter.svg";
 import instagramIcon from "../assets/icons/instagram.svg";
 import youtubeIcon from "../assets/icons/youtube.svg";
 import facebookIcon from "../assets/icons/facebook.svg";
 import mediumIcon from "../assets/icons/medium.svg";
-import CircularGallery from "../Components/AdditionStyles/CircularGallery";
 import SpotlightCard from "../Components/AdditionStyles/SpotlightCard";
+import Stack from "../Components/AdditionStyles/Stack";
+
+import aws from "../assets/icons/aws.svg";
+import css from "../assets/icons/css.svg";
+import docker from "../assets/icons/docker.svg";
+import dynatrace from "../assets/icons/dynatrace.svg";
+import figma from "../assets/icons/figma.svg";
+import github from "../assets/icons/git.svg";
+import gitlab from "../assets/icons/gitlab.svg";
+import html5 from "../assets/icons/html5.svg";
+import javascript from "../assets/icons/javascript.svg";
+import jira from "../assets/icons/jira.svg";
+import kibana from "../assets/icons/kibana.svg";
+import mongodb from "../assets/icons/mongodb.svg";
+import mysql from "../assets/icons/mysql.svg";
+import nodejs from "../assets/icons/nodejs.svg";
+import postman from "../assets/icons/postman.svg";
+import rancher from "../assets/icons/rancher.svg";
+import react from "../assets/icons/react.svg";
+import redux from "../assets/icons/redux.svg";
+import slack from "../assets/icons/slack.svg";
+import python from "../assets/icons/python.svg";
+import linux from "../assets/icons/linux.svg";
+const images = [
+  {
+    id: 1,
+    img: "https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?q=80&w=500&auto=format",
+  },
+  {
+    id: 2,
+    img: "https://images.unsplash.com/photo-1449844908441-8829872d2607?q=80&w=500&auto=format",
+  },
+  {
+    id: 3,
+    img: "https://images.unsplash.com/photo-1452626212852-811d58933cae?q=80&w=500&auto=format",
+  },
+  {
+    id: 4,
+    img: "https://images.unsplash.com/photo-1572120360610-d971b9d7767c?q=80&w=500&auto=format",
+  },
+];
 
 const About = () => {
   return (
     <>
+      <style>
+        {`
+      @keyframes verticalScroll {
+        0% {
+          transform: translateY(-100%);
+        }
+        100% {
+          transform: translateY(0%);
+        }
+      }
+
+      .scrolling-icons-wrapper {
+        height: 150vh;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+      }
+
+      .scrolling-icons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        animation: verticalScroll 300s linear infinite;
+      }
+    `}
+      </style>
       <section
         style={{
           position: "relative",
@@ -25,207 +93,362 @@ const About = () => {
           fontFamily: "Poppins, sans-serif",
         }}
       >
-   
         <div
           style={{
             position: "absolute",
             display: "flex",
-            top: "150px",
-            left: "200px",
+            top: "60px",
+            left: "32px",
             zIndex: 10,
           }}
         >
-          <SpotlightCard spotlightColor="rgba(0, 229, 255, 0.2)">
-            github
+          <SpotlightCard spotlightColor="rgba(0, 229, 255, 0.49)">
+            GitHub
           </SpotlightCard>
           <SpotlightCard spotlightColor="rgba(0, 229, 255, 0.2)">
-            leetcode
+            LeetCode
           </SpotlightCard>
           <SpotlightCard spotlightColor="rgba(0, 229, 255, 0.2)">
-            hackerrack
+            HackerRack
           </SpotlightCard>
         </div>
         <div
           style={{
-            width: "100%",
-            height: "100%",
+            position: "absolute",
+            top: "280px",
+            left: "50px",
+            zIndex: 10,
+          }}
+        >
+          <h2 style={{ fontSize: "1.5rem", marginBottom: "10px" }}>
+            Education
+          </h2>
+
+          <ul style={{ paddingLeft: "1rem", marginLeft: "25px" }}>
+            <li
+              style={{
+                whiteSpace: "normal",
+                wordBreak: "break-word",
+                fontSize: "1.2rem",
+                lineHeight: "1.6",
+                position: "relative",
+              }}
+            >
+              <span
+                style={{
+                  color: "#007BFF",
+                  fontWeight: "bold",
+                  position: "relative",
+                }}
+                onMouseEnter={() => {
+                  const el = document.getElementById("diploma-img");
+                  if (el) {
+                    el.style.opacity = "1";
+                    el.style.visibility = "visible";
+                  }
+                }}
+                onMouseLeave={() => {
+                  const el = document.getElementById("diploma-img");
+                  if (el) {
+                    el.style.opacity = "0";
+                    el.style.visibility = "hidden";
+                  }
+                }}
+              >
+                Diploma
+              </span>{" "}
+              &
+              <span
+                style={{
+                  color: "#007BFF",
+                  fontWeight: "bold",
+                  position: "relative",
+                  marginLeft: "4px",
+                }}
+                onMouseEnter={() => {
+                  const el = document.getElementById("be-img");
+                  if (el) {
+                    el.style.opacity = "1";
+                    el.style.visibility = "visible";
+                  }
+                }}
+                onMouseLeave={() => {
+                  const el = document.getElementById("be-img");
+                  if (el) {
+                    el.style.opacity = "0";
+                    el.style.visibility = "hidden";
+                  }
+                }}
+              >
+                Bachelor of Engineering
+              </span>{" "}
+              in Computers, Mumbai University <br />
+              <span
+                style={{
+                  color: "#007BFF",
+                  fontWeight: "bold",
+                  position: "relative",
+                }}
+                onMouseEnter={() => {
+                  const el = document.getElementById("ai-img");
+                  if (el) {
+                    el.style.opacity = "1";
+                    el.style.visibility = "visible";
+                  }
+                }}
+                onMouseLeave={() => {
+                  const el = document.getElementById("ai-img");
+                  if (el) {
+                    el.style.opacity = "0";
+                    el.style.visibility = "hidden";
+                  }
+                }}
+              >
+                Generative AI
+              </span>{" "}
+              Certificate – Upgrad
+              {/* Diploma Certificate */}
+              <img
+                id="diploma-img"
+                src="src/assets/certi.jpg"
+                style={{
+                  opacity: 0,
+                  visibility: "hidden",
+                  position: "absolute",
+                  top: "2rem",
+                  left: "0",
+                  width: "400px",
+                  border: "1px solid #ccc",
+                  borderRadius: "8px",
+                  zIndex: 999,
+                  transition: "opacity 0.3s ease, visibility 0.3s ease",
+                }}
+              />
+              {/* BE Certificate */}
+              <img
+                id="be-img"
+                src="src/assets/certi.jpg"
+                style={{
+                  opacity: 0,
+                  visibility: "hidden",
+                  position: "absolute",
+                  top: "2rem",
+                  left: "60px",
+                  width: "400px",
+                  border: "1px solid #ccc",
+                  borderRadius: "8px",
+                  zIndex: 999,
+                  transition: "opacity 0.3s ease, visibility 0.3s ease",
+                }}
+              />
+              {/* AI Certificate */}
+              <img
+                id="ai-img"
+                src="src/assets/certi.jpg"
+                style={{
+                  opacity: 0,
+                  visibility: "hidden",
+                  position: "absolute",
+                  top: "5rem",
+                  left: "0",
+                  width: "400px",
+                  border: "1px solid #ccc",
+                  borderRadius: "8px",
+                  zIndex: 999,
+                  transition: "opacity 0.3s ease, visibility 0.3s ease",
+                }}
+              />
+            </li>
+          </ul>
+        </div>
+        <div
+          style={{
+            position: "absolute",
+            top: "440px",
+            left: "55px",
+            zIndex: 10,
+            display: "flex",
+          }}
+        >
+          <div style={{ marginRight: "40px" }}>
+            <h1 style={{ fontSize: "3rem", margin: 0, fontWeight: "lighter" }}>
+              4+
+            </h1>
+            <p style={{ fontSize: "1.2rem", margin: 0 }}>
+              Years of <br /> Experience
+            </p>
+          </div>
+
+          <div>
+            <h1 style={{ fontSize: "3rem", margin: 0, fontWeight: "lighter" }}>
+              10+
+            </h1>
+            <p style={{ fontSize: "1.2rem", margin: 0 }}>
+              Successful <br /> Projects
+            </p>
+          </div>
+        </div>
+        <div
+          style={{
+            position: "absolute",
+            height: "150vh",
+            width: "80px",
+            backgroundColor: "rgba(255, 255, 255, 0.12)",
+            right: "400px",
+            zIndex: 10,
+            transform: "rotate(-10deg)",
+            transformOrigin: "center",
             overflow: "hidden",
           }}
         >
-          <div
-            style={{
-              position: "absolute",
-              top: "300px",
-              left: "50px",
-              zIndex: 10,
-            }}
-          >
-            <h2 style={{ fontSize: "1.5rem", marginBottom: "10px" }}>
-              Education
-            </h2>
-
-            <ul style={{ paddingLeft: "1.2rem", marginLeft: "25px" }}>
-              <li
-                style={{
-                  whiteSpace: "normal",
-                  wordBreak: "break-word",
-                  fontSize: "1.2rem",
-                  lineHeight: "1.6",
-                  position: "relative",
-                }}
-              >
-                <span
-                  style={{
-                    color: "#007BFF",
-                    fontWeight: "bold",
-                    position: "relative",
-                  }}
-                  onMouseEnter={() => {
-                    const el = document.getElementById("diploma-img");
-                    if (el) el.style.display = "block";
-                  }}
-                  onMouseLeave={() => {
-                    const el = document.getElementById("diploma-img");
-                    if (el) el.style.display = "none";
-                  }}
-                >
-                  Diploma
-                </span>{" "}
-                &
-                <span
-                  style={{
-                    color: "#007BFF",
-                    fontWeight: "bold",
-                    position: "relative",
-                    marginLeft: "4px",
-                  }}
-                  onMouseEnter={() => {
-                    const el = document.getElementById("be-img");
-                    if (el) el.style.display = "block";
-                  }}
-                  onMouseLeave={() => {
-                    const el = document.getElementById("be-img");
-                    if (el) el.style.display = "none";
-                  }}
-                >
-                  Bachelor of Engineering
-                </span>{" "}
-                in Computers, Mumbai University <br />
-                <span
-                  style={{
-                    color: "#007BFF",
-                    fontWeight: "bold",
-                    position: "relative",
-                  }}
-                  onMouseEnter={() => {
-                    const el = document.getElementById("ai-img");
-                    if (el) el.style.display = "block";
-                  }}
-                  onMouseLeave={() => {
-                    const el = document.getElementById("ai-img");
-                    if (el) el.style.display = "none";
-                  }}
-                >
-                  Generative AI{" "}
-                </span>{" "}
-                Certificate – Upgrad
+          <div className="scrolling-icons-wrapper">
+            <div className="scrolling-icons">
+              {[
+                aws,
+                css,
+                docker,
+                dynatrace,
+                figma,
+                github,
+                gitlab,
+                html5,
+                javascript,
+                jira,
+                kibana,
+                mongodb,
+                mysql,
+                nodejs,
+                postman,
+                rancher,
+                react,
+                redux,
+                slack,
+                python,
+                linux,
+                aws,
+                css,
+                docker,
+                dynatrace,
+                figma,
+                github,
+                gitlab,
+                html5,
+                javascript,
+                jira,
+                kibana,
+                mongodb,
+                mysql,
+                nodejs,
+                postman,
+                rancher,
+                react,
+                redux,
+                slack,
+                python,
+                linux,
+                aws,
+                css,
+                docker,
+                dynatrace,
+                figma,
+                github,
+                gitlab,
+                html5,
+                javascript,
+                jira,
+                kibana,
+                mongodb,
+                mysql,
+                nodejs,
+                postman,
+                rancher,
+                react,
+                redux,
+                slack,
+                python,
+                linux,
+                aws,
+                css,
+                docker,
+                dynatrace,
+                figma,
+                github,
+                gitlab,
+                html5,
+                javascript,
+                jira,
+                kibana,
+                mongodb,
+                mysql,
+                nodejs,
+                postman,
+                rancher,
+                react,
+                redux,
+                slack,
+                python,
+                linux, aws,
+                css,
+                docker,
+                dynatrace,
+                figma,
+                github,
+                gitlab,
+                html5,
+                javascript,
+                jira,
+                kibana,
+                mongodb,
+                mysql,
+                nodejs,
+                postman,
+                rancher,
+                react,
+                redux,
+                slack,
+                python,
+                linux,
+                aws,
+                css,
+                docker,
+                dynatrace,
+                figma,
+                github,
+                gitlab,
+                html5,
+                javascript,
+                jira,
+                kibana,
+                mongodb,
+                mysql,
+                nodejs,
+                postman,
+                rancher,
+                react,
+                redux,
+                slack,
+                python,
+                linux,
+              ].map((icon, index) => (
                 <img
-                  id="diploma-img"
-                  src="src/assets/certi.jpg"
+                  key={index}
+                  src={icon}
+                  alt={`icon-${index}`}
                   style={{
-                    display: "none",
-                    position: "absolute",
-                    top: "2rem",
-                    left: "0",
-                    width: "400px",
-                    border: "1px solid #ccc",
-                    borderRadius: "8px",
-                    zIndex: 999,
+                    width: "60px",
+                    height: "60px",
                   }}
                 />
-                <img
-                  id="be-img"
-                  src="src/assets/certi.jpg"
-                  style={{
-                    display: "none",
-                    position: "absolute",
-                    top: "2rem",
-                    left: "60px",
-                    width: "400px",
-                    border: "1px solid #ccc",
-                    borderRadius: "8px",
-                    zIndex: 999,
-                  }}
-                />
-                <img
-                  id="ai-img"
-                  src="src/assets/certi.jpg"
-                  style={{
-                    display: "none",
-                    position: "absolute",
-                    top: "5rem",
-                    left: "0",
-                    width: "400px",
-                    border: "1px solid #ccc",
-                    borderRadius: "8px",
-                    zIndex: 999,
-                  }}
-                />
-              </li>
-            </ul>
-          </div>
-          <div
-            style={{
-              position: "absolute",
-              top: "500px",
-              left: "100px",
-              zIndex: 10,
-              display: "flex",
-            }}
-          >
-            <div style={{ marginRight: "40px" }}>
-              <h1
-                style={{ fontSize: "3rem", margin: 0, fontWeight: "lighter" }}
-              >
-                4+
-              </h1>
-              <p style={{ fontSize: "1.2rem", margin: 0 }}>
-                Years of <br /> Experience
-              </p>
+              ))}
             </div>
-
-            <div>
-              <h1
-                style={{ fontSize: "3rem", margin: 0, fontWeight: "lighter" }}
-              >
-                10+
-              </h1>
-              <p style={{ fontSize: "1.2rem", margin: 0 }}>
-                Successful <br /> Projects
-              </p>
-            </div>
-          </div>
-        </div>
-        <div
-          style={{
-            position: "absolute",
-            bottom: "150px",
-            right: "60px",
-            display: "flex",
-            gap: "16px",
-            zIndex: 10,
-          }}
-        >
-          <div style={{ height: "550px", width: "490px", zIndex: 10 }}>
-            <CircularGallery bend={3} textColor="#ffffff" borderRadius={0.05} />
           </div>
         </div>
 
         <div
           style={{
             position: "absolute",
-            bottom: "40px",
-            right: "90px",
+            bottom: "60px",
+            left: "570px",
             display: "flex",
             gap: "16px",
             zIndex: 10,
@@ -297,6 +520,24 @@ const About = () => {
             />
           </a>
         </div>
+        <div
+          style={{
+            position: "absolute",
+            right: "20px",
+            top: "150px",
+            display: "flex",
+            zIndex: 1,
+          }}
+        >
+          <Stack
+            randomRotation={true}
+            sensitivity={100}
+            sendToBackOnClick={false}
+            cardDimensions={{ width: 350, height: 200 }}
+            cardsData={images}
+          />
+        </div>
+
       </section>
     </>
   );

@@ -133,22 +133,23 @@ const Hero = () => {
             animation: "pulse 3s infinite",
             cursor: "pointer",
             zIndex: 2,
+            boxShadow: "0 0 20px rgba(0, 247, 255, 0.)",
           }}
           aria-label="Schedule a Call"
+        ></button>
+        <span
+          style={{
+            position: "absolute",
+            whiteSpace: "nowrap",
+            bottom: "50px",
+            right: "110px",
+            color: "#fff",
+            fontWeight: "bold",
+            fontSize: "1rem",
+          }}
         >
-          <span
-            style={{
-              position: "absolute",
-              whiteSpace: "nowrap",
-              transform: "translateX(-150px) translateY(-09px)",
-              color: "#fff",
-              fontWeight: "bold",
-              fontSize: "1rem",
-            }}
-          >
-            Schedule a Call
-          </span>
-        </button>
+          Schedule a Call
+        </span>
       </section>
     </>
   );

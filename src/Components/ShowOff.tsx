@@ -1,5 +1,5 @@
 import Stack from "../Components/AdditionStyles/Stack";
-
+import CircularText from "../Components/AdditionStyles/CircularText";
 const images = [
   {
     id: 1,
@@ -28,8 +28,7 @@ const ShowOff = () => {
           width: "100vw",
           height: "100vh",
           flex: "0 0 100vw",
-          background:
-            "linear-gradient(to right,rgba(20, 20, 20, 0.1),rgba(129, 6, 119, 0.11))",
+          background: "linear-gradient(to right,rgb(0, 0, 0),rgb(0, 41, 48))",
           color: "white",
           display: "flex",
           alignItems: "center",
@@ -64,6 +63,21 @@ const ShowOff = () => {
             sendToBackOnClick={false}
             cardDimensions={{ width: 500, height: 300 }}
             cardsData={images}
+          />
+        </div>
+            <div
+          style={{
+            position: "absolute",
+            top: "40px",
+            left: "-5px",
+            zIndex: 10,
+          }}
+        >
+          <CircularText
+            text="CLICK*FOR*MY*PLAYLIST*  *"
+            onHover="speedUp"
+            spinDuration={20}
+            className="custom-class"
           />
         </div>
  

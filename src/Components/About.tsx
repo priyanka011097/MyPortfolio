@@ -1,4 +1,4 @@
-import CircularText from "../Components/AdditionStyles/CircularText";
+
 import twitterIcon from "../assets/icons/twitter.svg";
 import instagramIcon from "../assets/icons/instagram.svg";
 import youtubeIcon from "../assets/icons/youtube.svg";
@@ -16,8 +16,7 @@ const About = () => {
           width: "100vw",
           height: "100vh",
           flex: "0 0 100vw",
-          background:
-            "linear-gradient(to left,rgba(51, 51, 51, 0.9),rgb(8, 0, 17))",
+          background: "linear-gradient(to left,rgb(0, 0, 0),rgb(0, 26, 31))",
           color: "white",
           display: "flex",
           alignItems: "center",
@@ -26,21 +25,7 @@ const About = () => {
           fontFamily: "Poppins, sans-serif",
         }}
       >
-        <div
-          style={{
-            position: "absolute",
-            top: "40px",
-            left: "-5px",
-            zIndex: 10,
-          }}
-        >
-          <CircularText
-            text="CLICK*FOR*MY*PLAYLIST*  *"
-            onHover="speedUp"
-            spinDuration={20}
-            className="custom-class"
-          />
-        </div>
+   
         <div
           style={{
             position: "absolute",

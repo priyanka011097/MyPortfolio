@@ -1,8 +1,16 @@
 import { ChromaGrid } from "./AdditionStyles/ChromaItem";
+import advisorxai from "../assets/sites/advisorxai.png";
+import domainsystem from "../assets/sites/domainsystem.png";
+import einnosec from "../assets/sites/einnosec.png";
+import hirelytics from "../assets/sites/hirelytics.png";
+import securetain from "../assets/sites/securetain.png";
+import thefiftyelement from "../assets/sites/thefiftyelement.png";
+import thesmartfellowship from "../assets/sites/thesmartfellowship.png";
+import workverse from "../assets/sites/workverse.png";
 
 const items = [
   {
-    image: "https://i.pravatar.cc/300?img=1",
+    image: advisorxai,
     title: "Sarah Johnson",
     subtitle: "Frontend Developer",
     handle: "@sarahjohnson",
@@ -11,7 +19,7 @@ const items = [
     url: "https://github.com/sarahjohnson",
   },
   {
-    image: "https://i.pravatar.cc/300?img=1",
+    image: domainsystem,
     title: "Sarah Johnson",
     subtitle: "Frontend Developer",
     handle: "@sarahjohnson",
@@ -20,7 +28,7 @@ const items = [
     url: "https://github.com/sarahjohnson",
   },
     {
-    image: "https://i.pravatar.cc/300?img=1",
+    image: einnosec,
     title: "Sarah Johnson",
     subtitle: "Frontend Developer",
     handle: "@sarahjohnson",
@@ -29,7 +37,7 @@ const items = [
     url: "https://github.com/sarahjohnson",
   },
   {
-    image: "https://i.pravatar.cc/300?img=1",
+    image: hirelytics,
     title: "Sarah Johnson",
     subtitle: "Frontend Developer",
     handle: "@sarahjohnson",
@@ -38,7 +46,25 @@ const items = [
     url: "https://github.com/sarahjohnson",
   },
     {
-    image: "https://i.pravatar.cc/300?img=1",
+    image: securetain,
+    title: "Sarah Johnson",
+    subtitle: "Frontend Developer",
+    handle: "@sarahjohnson",
+    borderColor: "#3B82F6",
+    gradient: "linear-gradient(145deg, #3B82F6, #000)",
+    url: "https://github.com/sarahjohnson",
+  },
+    {
+    image: thefiftyelement,
+    title: "Sarah Johnson",
+    subtitle: "Frontend Developer",
+    handle: "@sarahjohnson",
+    borderColor: "#3B82F6",
+    gradient: "linear-gradient(145deg, #3B82F6, #000)",
+    url: "https://github.com/sarahjohnson",
+  },
+    {
+    image: thesmartfellowship,
     title: "Sarah Johnson",
     subtitle: "Frontend Developer",
     handle: "@sarahjohnson",
@@ -47,7 +73,7 @@ const items = [
     url: "https://github.com/sarahjohnson",
   },
   {
-    image: "https://i.pravatar.cc/300?img=1",
+    image: workverse,
     title: "Sarah Johnson",
     subtitle: "Frontend Developer",
     handle: "@sarahjohnson",

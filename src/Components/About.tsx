@@ -28,6 +28,10 @@ import slack from "../assets/icons/slack.svg";
 import python from "../assets/icons/python.svg";
 import linux from "../assets/icons/linux.svg";
 
+import git from "../assets/icons/github.png";
+import leetcode from "../assets/icons/leetcode.png";
+import hackerrack from "../assets/icons/hackerrack.png";
+
 import event1 from "../assets/event1.jpg";
 import event2 from "../assets/event2.jpg";
 import event3 from "../assets/event3.jpg";
@@ -89,7 +93,7 @@ const About = () => {
         flex-direction: column;
         align-items: center;
         gap: 20px;
-        animation: verticalScroll 300s linear infinite;
+        animation: verticalScroll 100s linear infinite;
       }
     `}
       </style>
@@ -113,25 +117,46 @@ const About = () => {
             position: "absolute",
             display: "flex",
             top: "60px",
-            left: "32px",
+            left: "-10px",
             zIndex: 10,
           }}
         >
           <SpotlightCard spotlightColor="rgba(0, 229, 255, 0.49)">
+            <div style={{ display: "flex", alignItems: "center" }}>
             GitHub
+           <img src={git} alt="GitHub" style={{ width: "20px", height: "20px", marginLeft: "55px", color: "#ffffff" }} /> 
+            </div>
+            <div style={{ fontSize: "3.2rem", fontWeight: "bold", marginTop: "15px" }}>
+              20+
+            </div>
           </SpotlightCard>
-          <SpotlightCard spotlightColor="rgba(0, 229, 255, 0.2)">
+
+           <SpotlightCard spotlightColor="rgba(0, 229, 255, 0.49)">
+            <div style={{ display: "flex", alignItems: "center" }}>
             LeetCode
+           <img src={leetcode} alt="LeetCode" style={{ width: "20px", height: "20px", marginLeft: "40px", color: "#ffffff" }} /> 
+            </div>
+            <div style={{ fontSize: "3.2rem", fontWeight: "bold", marginTop: "15px" }}>
+              200+
+            </div>
           </SpotlightCard>
-          <SpotlightCard spotlightColor="rgba(0, 229, 255, 0.2)">
+
+           <SpotlightCard spotlightColor="rgba(0, 229, 255, 0.49)">
+            <div style={{ display: "flex", alignItems: "center" }}>
             HackerRack
+           <img src={hackerrack} alt="HackerRack" style={{ width: "20px", height: "20px", marginLeft: "25px", color: "#ffffff" }} /> 
+            </div>
+            <div style={{ fontSize: "3.2rem", fontWeight: "bold", marginTop: "15px" }}>
+              50+
+            </div>
           </SpotlightCard>
+
         </div>
         <div
           style={{
             position: "absolute",
             top: "280px",
-            left: "50px",
+            left: "12px",
             zIndex: 10,
           }}
         >
@@ -280,7 +305,7 @@ const About = () => {
           style={{
             position: "absolute",
             top: "440px",
-            left: "55px",
+            left: "12px",
             zIndex: 10,
             display: "flex",
           }}
@@ -309,7 +334,7 @@ const About = () => {
             height: "150vh",
             width: "80px",
             backgroundColor: "rgba(255, 255, 255, 0.12)",
-            right: "400px",
+            right: "500px",
             zIndex: 10,
             transform: "rotate(10deg)",
             transformOrigin: "center",
@@ -425,7 +450,7 @@ const About = () => {
         <div
           style={{
             position: "absolute",
-            right: "20px",
+            right: "35px",
             bottom: "50px",
             display: "flex",
             zIndex: 1,

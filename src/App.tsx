@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import Hero from './Components/Hero'
 import About from './Components/About'
 import Project from './Components/Project'
-import ShowOff from './Components/ShowOff'
+// import ShowOff from './Components/ShowOff'
 import './App.css'
 
 function App() {
@@ -36,7 +36,7 @@ function App() {
       <Hero />
       <About />
       <Project />
-      <ShowOff />
+      {/* <ShowOff /> */}
     </div>
   )
 }

@@ -451,7 +451,7 @@ const About = () => {
           style={{
             position: "absolute",
             right: "35px",
-            bottom: "50px",
+            bottom: "200px",
             display: "flex",
             zIndex: 1,
           }}

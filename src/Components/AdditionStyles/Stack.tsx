@@ -1,4 +1,4 @@
-import { motion, useMotionValue, useTransform } from "framer-motion";
+import { motion, useMotionValue } from "framer-motion";
 import { useState } from "react";
 import "./Stack.css";
 
@@ -11,8 +11,6 @@ interface CardRotateProps {
 function CardRotate({ children, onSendToBack, sensitivity }: CardRotateProps) {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-  const rotateX = useTransform(y, [-150, 150], [30, -30]); // was [60, -60]
-  const rotateY = useTransform(x, [-150, 150], [-30, 30]); // was [-60, 60]
 
   function handleDragEnd(_: never, info: { offset: { x: number; y: number } }) {
     if (
@@ -29,7 +27,7 @@ function CardRotate({ children, onSendToBack, sensitivity }: CardRotateProps) {
   return (
     <motion.div
       className="card-rotate"
-      style={{ x, y, rotateX, rotateY }}
+      style={{ x, y }}
       drag
       dragConstraints={{ top: 0, right: 0, bottom: 0, left: 0 }}
       dragElastic={0.6}
@@ -117,8 +115,7 @@ export default function Stack({
       }}
     >
       {cards.map((card, index) => {
-        const randomRotate = randomRotation ? Math.random() * 10 - 5 : 0;
-
+        
         return (
           <CardRotate
             key={card.id}
@@ -129,7 +126,7 @@ export default function Stack({
               className="card"
               onClick={() => sendToBackOnClick && sendToBack(card.id)}
               animate={{
-                rotateZ: (cards.length - index - 1) * 2 + randomRotate,
+                rotateZ: (randomRotation ? (Math.random() - 0.5) * 2 : 0),
                 scale: 1 + index * 0.02,
                 transformOrigin: "90% 90%",
               }}

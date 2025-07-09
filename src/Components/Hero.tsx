@@ -1,7 +1,10 @@
+import { useState } from "react";
 import Priyanka from "../assets/priyanka_new.png";
 import SplitText from "../Components/SplitText";
+import ChatWidget from "../Components/ChatWidget";
 
 const Hero = () => {
+  const [showChat, setShowChat] = useState(false);
   return (
     <>
       <style>
@@ -115,11 +118,9 @@ const Hero = () => {
             </li>
           </ul>
         </div>
-
+          <div>
         <button
-          onClick={() => {
-            // trigger your agent scheduling logic here
-          }}
+          onClick={() => setShowChat((prev) => !prev)}
           style={{
             position: "absolute",
             bottom: "40px",
@@ -136,7 +137,7 @@ const Hero = () => {
             boxShadow: "0 0 20px rgba(0, 247, 255, 0.)",
           }}
           aria-label="Schedule a Call"
-        ></button>
+        > </button>
         <span
           style={{
             position: "absolute",
@@ -150,6 +151,8 @@ const Hero = () => {
         >
           Schedule a Call
         </span>
+        {showChat && <ChatWidget />}
+        </div>
       </section>
     </>
   );

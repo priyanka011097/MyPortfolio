@@ -334,7 +334,7 @@ const About = () => {
             height: "150vh",
             width: "80px",
             backgroundColor: "rgba(255, 255, 255, 0.12)",
-            right: "500px",
+            right: "475px",
             zIndex: 10,
             transform: "rotate(0deg)",
             transformOrigin: "center",

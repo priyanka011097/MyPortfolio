@@ -563,6 +563,7 @@ const About = () => {
             />
           </a>
         </div>
+    
         <div
           style={{
             position: "absolute",
@@ -583,6 +584,17 @@ const About = () => {
           >
             My Moments
           </h1>
+          <div
+          style={{
+            position: "absolute",
+            display: "flex",
+            top: "90px",
+            left: "10px",
+            zIndex: 0,
+          }}
+        >
+          <h3 style={{ fontWeight: "lighter"}}>hey you tossed all my moments!</h3>
+        </div>
           <Stack
             randomRotation={true}
             sensitivity={100}

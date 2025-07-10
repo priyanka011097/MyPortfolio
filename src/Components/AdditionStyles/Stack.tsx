@@ -1,5 +1,5 @@
 import { motion, useMotionValue } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Stack.css";
 
 interface CardRotateProps {
@@ -46,15 +46,19 @@ interface StackProps {
   sendToBackOnClick?: boolean;
   cardsData?: { id: number; img: string }[];
   animationConfig?: { stiffness: number; damping: number };
+  autoShuffle?: boolean;
+  autoShuffleDelay?: number;
 }
 
 export default function Stack({
   randomRotation = false,
-  sensitivity = 200,
+  sensitivity = 500,
   cardDimensions = { width: 208, height: 208 },
   cardsData = [],
-  animationConfig = { stiffness: 260, damping: 20 },
+  animationConfig = { stiffness: 20, damping: 120 },
   sendToBackOnClick = false,
+  autoShuffle = true,
+  autoShuffleDelay = 2000,
 }: StackProps) {
   const [cards, setCards] = useState(
     cardsData.length
@@ -105,17 +109,33 @@ export default function Stack({
     });
   };
 
+  // 🔁 Auto Shuffle Logic
+  useEffect(() => {
+    if (!autoShuffle) return;
+
+    const interval = setInterval(() => {
+      setCards((prev) => {
+        if (prev.length === 0) return prev;
+        const newCards = [...prev];
+        const lastCard = newCards.pop();
+        if (lastCard) newCards.unshift(lastCard);
+        return newCards;
+      });
+    }, autoShuffleDelay);
+
+    return () => clearInterval(interval);
+  }, [autoShuffle, autoShuffleDelay]);
+
   return (
     <div
       className="stack-container"
       style={{
         width: cardDimensions.width,
         height: cardDimensions.height,
-        perspective: 600,
+        perspective: 200,
       }}
     >
       {cards.map((card, index) => {
-        
         return (
           <CardRotate
             key={card.id}
@@ -126,9 +146,9 @@ export default function Stack({
               className="card"
               onClick={() => sendToBackOnClick && sendToBack(card.id)}
               animate={{
-                rotateZ: (randomRotation ? (Math.random() - 0.5) * 2 : 0),
+                rotateZ: randomRotation ? (Math.random() - 0.5) * 2 : 0,
                 scale: 1 + index * 0.02,
-                transformOrigin: "90% 90%",
+                transformOrigin: "110% 60%",
               }}
               initial={false}
               transition={{

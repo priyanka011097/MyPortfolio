@@ -6,17 +6,6 @@
   overflow: hidden;
 }
 
-/* Container for horizontal scroll */
-.horizontal-scroll {
-  display: flex;
-  flex-direction: row;
-  overflow-x: hidden;
-  overflow-y: hidden;
-  scroll-behavior: smooth;
-  height: 100vh;
-  white-space: nowrap;
-}
-
 .horizontal-scroll {
   display: flex;
   overflow-x: scroll;
@@ -24,18 +13,24 @@
   white-space: nowrap;
   height: 100vh;
   scroll-behavior: smooth;
-  cursor: grab;
+  cursor: default;
+  user-select: none; 
+  -webkit-user-drag: none; 
 }
 
 .horizontal-scroll:active {
   cursor: grabbing;
 }
 
-.horizontal-scroll > * {
-  flex: 0 0 100vw;
-  height: 100%;
+.horizontal-scroll img {
+  pointer-events: none; 
+  -webkit-user-drag: none;
+  user-select: none;
 }
 
+.horizontal-scroll * {
+  user-select: none;
+}
 
 @keyframes cometGlow {
   0% {

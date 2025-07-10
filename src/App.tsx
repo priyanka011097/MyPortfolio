@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import Hero from './Components/Hero'
 import About from './Components/About'
 import Project from './Components/Project'
-import ShowOff from './Components/ShowOff'
+// import ShowOff from './Components/ShowOff'
 import CursorFollower from "../src/Components/AdditionStyles/CursorFollower";
 import './App.css'
 
@@ -94,7 +94,7 @@ function App() {
       <Hero />
       <About />
       <Project />
-      <ShowOff />
+      {/* <ShowOff /> */}
     </div>
   )
 }

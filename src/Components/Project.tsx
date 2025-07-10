@@ -96,7 +96,7 @@ const Project = () => {
           style={{
             width: "80%",
             height: "70%",
-            marginBottom: "40px",
+            marginBottom: "50px",
             boxSizing: "border-box",
             WebkitOverflowScrolling: "touch",
           }}

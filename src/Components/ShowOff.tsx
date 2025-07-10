@@ -36,7 +36,7 @@ const ShowOff = () => {
           style={{
             position: "absolute",
             top: "40px",
-            left: "-5px",
+            right: "20px",
             zIndex: 10,
           }}
         >

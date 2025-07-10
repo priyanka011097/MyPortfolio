@@ -55,7 +55,7 @@ const images = [
     id: 4,
     img: event4,
   },
-    {
+  {
     id: 5,
     img: event5,
   },
@@ -123,34 +123,78 @@ const About = () => {
         >
           <SpotlightCard spotlightColor="rgba(0, 229, 255, 0.49)">
             <div style={{ display: "flex", alignItems: "center" }}>
-            GitHub
-           <img src={git} alt="GitHub" style={{ width: "20px", height: "20px", marginLeft: "55px", color: "#ffffff" }} /> 
+              GitHub
+              <img
+                src={git}
+                alt="GitHub"
+                style={{
+                  width: "20px",
+                  height: "20px",
+                  marginLeft: "55px",
+                  color: "#ffffff",
+                }}
+              />
             </div>
-            <div style={{ fontSize: "3.2rem", fontWeight: "bold", marginTop: "15px" }}>
+            <div
+              style={{
+                fontSize: "3.2rem",
+                fontWeight: "bold",
+                marginTop: "15px",
+              }}
+            >
               20+
             </div>
           </SpotlightCard>
 
-           <SpotlightCard spotlightColor="rgba(0, 229, 255, 0.49)">
+          <SpotlightCard spotlightColor="rgba(0, 229, 255, 0.49)">
             <div style={{ display: "flex", alignItems: "center" }}>
-            LeetCode
-           <img src={leetcode} alt="LeetCode" style={{ width: "20px", height: "20px", marginLeft: "40px", color: "#ffffff" }} /> 
+              LeetCode
+              <img
+                src={leetcode}
+                alt="LeetCode"
+                style={{
+                  width: "20px",
+                  height: "20px",
+                  marginLeft: "40px",
+                  color: "#ffffff",
+                }}
+              />
             </div>
-            <div style={{ fontSize: "3.2rem", fontWeight: "bold", marginTop: "15px" }}>
+            <div
+              style={{
+                fontSize: "3.2rem",
+                fontWeight: "bold",
+                marginTop: "15px",
+              }}
+            >
               200+
             </div>
           </SpotlightCard>
 
-           <SpotlightCard spotlightColor="rgba(0, 229, 255, 0.49)">
+          <SpotlightCard spotlightColor="rgba(0, 229, 255, 0.49)">
             <div style={{ display: "flex", alignItems: "center" }}>
-            HackerRack
-           <img src={hackerrack} alt="HackerRack" style={{ width: "20px", height: "20px", marginLeft: "25px", color: "#ffffff" }} /> 
+              HackerRack
+              <img
+                src={hackerrack}
+                alt="HackerRack"
+                style={{
+                  width: "20px",
+                  height: "20px",
+                  marginLeft: "25px",
+                  color: "#ffffff",
+                }}
+              />
             </div>
-            <div style={{ fontSize: "3.2rem", fontWeight: "bold", marginTop: "15px" }}>
+            <div
+              style={{
+                fontSize: "3.2rem",
+                fontWeight: "bold",
+                marginTop: "15px",
+              }}
+            >
               50+
             </div>
           </SpotlightCard>
-
         </div>
         <div
           style={{
@@ -344,18 +388,90 @@ const About = () => {
           <div className="scrolling-icons-wrapper">
             <div className="scrolling-icons">
               {[
-           aws, css, docker, dynatrace, figma, github, gitlab,
-          html5, javascript, jira, kibana, mongodb, mysql, nodejs,
-          postman, rancher, react, redux, slack, python, linux,
-          aws, css, docker, dynatrace, figma, github, gitlab,
-          html5, javascript, jira, kibana, mongodb, mysql, nodejs,
-          postman, rancher, react, redux, slack, python, linux,
-          aws, css, docker, dynatrace, figma, github, gitlab,
-          html5, javascript, jira, kibana, mongodb, mysql, nodejs,
-          postman, rancher, react, redux, slack, python, linux,
-          aws, css, docker, dynatrace, figma, github, gitlab,
-          html5, javascript, jira, kibana, mongodb, mysql, nodejs,
-          postman, rancher, react, redux, slack, python, linux,
+                aws,
+                css,
+                docker,
+                dynatrace,
+                figma,
+                github,
+                gitlab,
+                html5,
+                javascript,
+                jira,
+                kibana,
+                mongodb,
+                mysql,
+                nodejs,
+                postman,
+                rancher,
+                react,
+                redux,
+                slack,
+                python,
+                linux,
+                aws,
+                css,
+                docker,
+                dynatrace,
+                figma,
+                github,
+                gitlab,
+                html5,
+                javascript,
+                jira,
+                kibana,
+                mongodb,
+                mysql,
+                nodejs,
+                postman,
+                rancher,
+                react,
+                redux,
+                slack,
+                python,
+                linux,
+                aws,
+                css,
+                docker,
+                dynatrace,
+                figma,
+                github,
+                gitlab,
+                html5,
+                javascript,
+                jira,
+                kibana,
+                mongodb,
+                mysql,
+                nodejs,
+                postman,
+                rancher,
+                react,
+                redux,
+                slack,
+                python,
+                linux,
+                aws,
+                css,
+                docker,
+                dynatrace,
+                figma,
+                github,
+                gitlab,
+                html5,
+                javascript,
+                jira,
+                kibana,
+                mongodb,
+                mysql,
+                nodejs,
+                postman,
+                rancher,
+                react,
+                redux,
+                slack,
+                python,
+                linux,
               ].map((icon, index) => (
                 <img
                   key={index}
@@ -450,12 +566,23 @@ const About = () => {
         <div
           style={{
             position: "absolute",
-            right: "35px",
+            right: "10px",
             bottom: "200px",
-            display: "flex",
+            display: "block",
             zIndex: 1,
           }}
         >
+          <h1
+            style={{
+              width: "100%",
+              color: "#fff",
+              fontSize: "2rem",
+              fontWeight: "bold",
+              padding: "10px -150px",
+            }}
+          >
+            My Moments
+          </h1>
           <Stack
             randomRotation={true}
             sensitivity={100}
@@ -464,7 +591,6 @@ const About = () => {
             cardsData={images}
           />
         </div>
-
       </section>
     </>
   );

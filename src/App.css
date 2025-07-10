@@ -40,6 +40,26 @@
   -ms-overflow-style: none;
 }
 
+.horizontal-scroll {
+  display: flex;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  height: 100vh;
+  scroll-behavior: smooth;
+  cursor: grab;
+}
+
+.horizontal-scroll:active {
+  cursor: grabbing;
+}
+
+.horizontal-scroll > * {
+  flex: 0 0 100vw;
+  height: 100%;
+}
+
+
 @keyframes cometGlow {
   0% {
     filter: hue-rotate(0deg);

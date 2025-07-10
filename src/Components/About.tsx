@@ -593,7 +593,7 @@ const About = () => {
             zIndex: 0,
           }}
         >
-          <h3 style={{ fontWeight: "lighter"}}>hey you tossed all my moments!</h3>
+          <h3 style={{ fontWeight: "lighter"}}>MORE COMMING SOON!!</h3>
         </div>
           <Stack
             randomRotation={true}

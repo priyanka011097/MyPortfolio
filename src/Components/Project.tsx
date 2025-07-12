@@ -84,7 +84,7 @@ const Project = () => {
           width: "100vw",
           height: "100vh",
           flex: "0 0 100vw",
-          // background: "linear-gradient(to right,rgb(0, 0, 0),rgb(0, 26, 31))",
+          background: "linear-gradient(to right,rgb(0, 0, 0),rgb(0, 26, 31),rgb(0, 26, 31))",
           color: "white",
           display: "flex",
           alignItems: "center",

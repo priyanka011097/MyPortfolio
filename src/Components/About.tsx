@@ -600,7 +600,7 @@ const About = () => {
               zIndex: 0,
             }}
           >
-            <h3 style={{ fontWeight: "lighter" }}>MORE COMMING SOON!!</h3>
+            <h3 style={{ fontWeight: "lighter" }}>MORE COMING SOON!!</h3>
           </div>
           <Stack
             randomRotation={true}

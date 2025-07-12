@@ -2,6 +2,7 @@ import { useState } from "react";
 import Priyanka from "../assets/priyanka_new.png";
 import SplitText from "../Components/SplitText";
 import ChatWidget from "../Components/ChatWidget";
+import HoverReveal from "../Components/AdditionStyles/HoverReveal";
 
 const Hero = () => {
   const [showChat, setShowChat] = useState(false);
@@ -15,14 +16,14 @@ const Hero = () => {
             100% { transform: scale(1); opacity: 0.7; }
           }
           @keyframes wiggle {
-  0% { transform: rotate(0deg); }
-  15% { transform: rotate(5deg); }
-  30% { transform: rotate(-5deg); }
-  45% { transform: rotate(3deg); }
-  60% { transform: rotate(-3deg); }
-  75% { transform: rotate(2deg); }
-  100% { transform: rotate(0deg); }
-}
+            0% { transform: rotate(0deg); }
+            15% { transform: rotate(5deg); }
+            30% { transform: rotate(-5deg); }
+            45% { transform: rotate(3deg); }
+            60% { transform: rotate(-3deg); }
+            75% { transform: rotate(2deg); }
+            100% { transform: rotate(0deg); }
+          }
         `}
       </style>
 
@@ -77,25 +78,30 @@ const Hero = () => {
             <li>
               Proud of my own product <br />
               <span style={{ fontWeight: "bold", fontSize: "1.5rem" }}>
-                StopScrolling.life <br />
+                <a
+                  href="https://stopscrolling.life/"
+                  target="_blank"
+                  style={{ color: "#fff" }}
+                  rel="noopener noreferrer"
+                >
+                  StopScrolling.life{" "}
+                </a>
+                <br />
               </span>
               and other. <br />
             </li>
           </ul>
         </div>
-
-        <img
-          src={Priyanka}
-          alt="Priyanka"
-          style={{
-            maxHeight: "75vh",
-            marginTop: "120px",
-            objectFit: "contain",
-            borderRadius: "1rem",
-            zIndex: 2,
-            width: "100%",
-          }}
-        />
+ <div className="hover-wrapper">
+  <img src={Priyanka} alt="Priyanka" className="priyanka-img"    style={{
+      width: "100%",
+      objectFit: "contain",
+      borderRadius: "1rem",
+      zIndex: 2,
+      position: "relative",
+    }}/>
+  <HoverReveal />
+</div>
 
         <div
           style={{
@@ -118,40 +124,42 @@ const Hero = () => {
             </li>
           </ul>
         </div>
-          <div>
-        <button
-          onClick={() => setShowChat((prev) => !prev)}
-          style={{
-            position: "absolute",
-            bottom: "40px",
-            right: "50px",
-            width: "50px",
-            height: "50px",
-            borderRadius: "50%",
-            border: "none",
-            background:
-              "radial-gradient(circle, rgb(255, 255, 255), rgb(0, 247, 255))",
-            animation: "pulse 3s infinite",
-            cursor: "pointer",
-            zIndex: 2,
-            boxShadow: "0 0 20px rgba(0, 247, 255, 0.)",
-          }}
-          aria-label="Schedule a Call"
-        > </button>
-        <span
-          style={{
-            position: "absolute",
-            whiteSpace: "nowrap",
-            bottom: "50px",
-            right: "110px",
-            color: "#fff",
-            fontWeight: "bold",
-            fontSize: "1rem",
-          }}
-        >
-          Schedule a Call
-        </span>
-        {showChat && <ChatWidget />}
+        <div>
+          <button
+            onClick={() => setShowChat((prev) => !prev)}
+            style={{
+              position: "absolute",
+              bottom: "40px",
+              right: "50px",
+              width: "50px",
+              height: "50px",
+              borderRadius: "50%",
+              border: "none",
+              background:
+                "radial-gradient(circle, rgb(255, 255, 255), rgb(0, 247, 255))",
+              animation: "pulse 3s infinite",
+              cursor: "pointer",
+              zIndex: 2,
+              boxShadow: "0 0 20px rgba(0, 247, 255, 0.)",
+            }}
+            aria-label="Schedule a Call"
+          >
+            {" "}
+          </button>
+          <span
+            style={{
+              position: "absolute",
+              whiteSpace: "nowrap",
+              bottom: "50px",
+              right: "110px",
+              color: "#fff",
+              fontWeight: "bold",
+              fontSize: "1rem",
+            }}
+          >
+            Schedule a Call
+          </span>
+          {showChat && <ChatWidget />}
         </div>
       </section>
     </>

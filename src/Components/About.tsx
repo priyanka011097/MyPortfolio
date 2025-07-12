@@ -121,80 +121,87 @@ const About = () => {
             zIndex: 10,
           }}
         >
-          <SpotlightCard spotlightColor="rgba(0, 229, 255, 0.49)">
-            <div style={{ display: "flex", alignItems: "center" }}>
-              GitHub
-              <img
-                src={git}
-                alt="GitHub"
+          <a href="https://github.com/priyanka011097" style={{ color: "#fff", textDecoration: "none"}} target="_blank">
+            <SpotlightCard spotlightColor="rgba(0, 229, 255, 0.49)">
+              <div style={{ display: "flex", alignItems: "center" }}>
+                GitHub
+                <img
+                  src={git}
+                  alt="GitHub"
+                  style={{
+                    width: "20px",
+                    height: "20px",
+                    marginLeft: "55px",
+                    color: "#ffffff",
+                  }}
+                />
+              </div>
+              <div
                 style={{
-                  width: "20px",
-                  height: "20px",
-                  marginLeft: "55px",
-                  color: "#ffffff",
+                  fontSize: "3.2rem",
+                  fontWeight: "bold",
+                  marginTop: "15px",
                 }}
-              />
-            </div>
-            <div
-              style={{
-                fontSize: "3.2rem",
-                fontWeight: "bold",
-                marginTop: "15px",
-              }}
-            >
-              20+
-            </div>
-          </SpotlightCard>
-
-          <SpotlightCard spotlightColor="rgba(0, 229, 255, 0.49)">
-            <div style={{ display: "flex", alignItems: "center" }}>
-              LeetCode
-              <img
-                src={leetcode}
-                alt="LeetCode"
+              >
+                20
+              </div>
+            </SpotlightCard>
+          </a>
+          <a href="https://leetcode.com/u/2u1dfKNJji/" style={{ color: "#fff", textDecoration: "none"}} target="_blank">
+            <SpotlightCard spotlightColor="rgba(0, 229, 255, 0.49)">
+              <div style={{ display: "flex", alignItems: "center" }}>
+                LeetCode
+                <img
+                  src={leetcode}
+                  alt="LeetCode"
+                  style={{
+                    width: "20px",
+                    height: "20px",
+                    marginLeft: "40px",
+                    color: "#ffffff",
+                  }}
+                />
+              </div>
+              <div
                 style={{
-                  width: "20px",
-                  height: "20px",
-                  marginLeft: "40px",
-                  color: "#ffffff",
+                  fontSize: "3.2rem",
+                  fontWeight: "bold",
+                  marginTop: "15px",
                 }}
-              />
-            </div>
-            <div
-              style={{
-                fontSize: "3.2rem",
-                fontWeight: "bold",
-                marginTop: "15px",
-              }}
-            >
-              200+
-            </div>
-          </SpotlightCard>
-
-          <SpotlightCard spotlightColor="rgba(0, 229, 255, 0.49)">
-            <div style={{ display: "flex", alignItems: "center" }}>
-              HackerRack
-              <img
-                src={hackerrack}
-                alt="HackerRack"
+              >
+                200
+              </div>
+            </SpotlightCard>
+          </a>{" "}
+          <a
+            href="https://www.hackerrank.com/profile/shahasanepriyan1"
+            style={{ color: "#fff", textDecoration: "none"}} target="_blank"
+          >
+            <SpotlightCard spotlightColor="rgba(0, 229, 255, 0.49)">
+              <div style={{ display: "flex", alignItems: "center" }}>
+                HackerRack
+                <img
+                  src={hackerrack}
+                  alt="HackerRack"
+                  style={{
+                    width: "20px",
+                    height: "20px",
+                    marginLeft: "25px",
+                    color: "#ffffff",
+                  }}
+                />
+              </div>
+              <div
                 style={{
-                  width: "20px",
-                  height: "20px",
-                  marginLeft: "25px",
-                  color: "#ffffff",
+                  fontSize: "3.2rem",
+                  fontWeight: "bold",
+                  marginTop: "15px",
                 }}
-              />
-            </div>
-            <div
-              style={{
-                fontSize: "3.2rem",
-                fontWeight: "bold",
-                marginTop: "15px",
-              }}
-            >
-              50+
-            </div>
-          </SpotlightCard>
+              >
+                50
+              </div>
+            </SpotlightCard>
+          </a>
         </div>
         <div
           style={{
@@ -292,7 +299,7 @@ const About = () => {
               </span>{" "}
               Certificate – Upgrad
               {/* Diploma Certificate */}
-              <img
+              {/* <img
                 id="diploma-img"
                 src="src/assets/certi.jpg"
                 style={{
@@ -307,9 +314,9 @@ const About = () => {
                   zIndex: 999,
                   transition: "opacity 0.3s ease, visibility 0.3s ease",
                 }}
-              />
+              /> */}
               {/* BE Certificate */}
-              <img
+              {/* <img
                 id="be-img"
                 src="src/assets/certi.jpg"
                 style={{
@@ -324,9 +331,9 @@ const About = () => {
                   zIndex: 999,
                   transition: "opacity 0.3s ease, visibility 0.3s ease",
                 }}
-              />
+              /> */}
               {/* AI Certificate */}
-              <img
+              {/* <img
                 id="ai-img"
                 src="src/assets/certi.jpg"
                 style={{
@@ -341,7 +348,7 @@ const About = () => {
                   zIndex: 999,
                   transition: "opacity 0.3s ease, visibility 0.3s ease",
                 }}
-              />
+              /> */}
             </li>
           </ul>
         </div>
@@ -356,7 +363,7 @@ const About = () => {
         >
           <div style={{ marginRight: "40px" }}>
             <h1 style={{ fontSize: "3rem", margin: 0, fontWeight: "lighter" }}>
-              4+
+              5
             </h1>
             <p style={{ fontSize: "1.2rem", margin: 0 }}>
               Years of <br /> Experience
@@ -365,7 +372,7 @@ const About = () => {
 
           <div>
             <h1 style={{ fontSize: "3rem", margin: 0, fontWeight: "lighter" }}>
-              10+
+              10
             </h1>
             <p style={{ fontSize: "1.2rem", margin: 0 }}>
               Successful <br /> Projects
@@ -377,7 +384,7 @@ const About = () => {
             position: "absolute",
             height: "150vh",
             width: "80px",
-            backgroundColor: "rgba(255, 255, 255, 0.12)",
+            backgroundColor: "rgb(255, 255, 255)",
             right: "475px",
             zIndex: 10,
             transform: "rotate(0deg)",
@@ -563,7 +570,7 @@ const About = () => {
             />
           </a>
         </div>
-    
+
         <div
           style={{
             position: "absolute",
@@ -585,16 +592,16 @@ const About = () => {
             My Moments
           </h1>
           <div
-          style={{
-            position: "absolute",
-            display: "flex",
-            top: "90px",
-            left: "10px",
-            zIndex: 0,
-          }}
-        >
-          <h3 style={{ fontWeight: "lighter"}}>MORE COMMING SOON!!</h3>
-        </div>
+            style={{
+              position: "absolute",
+              display: "flex",
+              top: "90px",
+              left: "10px",
+              zIndex: 0,
+            }}
+          >
+            <h3 style={{ fontWeight: "lighter" }}>MORE COMMING SOON!!</h3>
+          </div>
           <Stack
             randomRotation={true}
             sensitivity={100}

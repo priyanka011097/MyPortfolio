@@ -1,6 +1,7 @@
-import twitterIcon from "../assets/icons/twitter.svg";
+// import twitterIcon from "../assets/icons/twitter.svg";
 import instagramIcon from "../assets/icons/instagram.svg";
-import youtubeIcon from "../assets/icons/youtube.svg";
+// import youtubeIcon from "../assets/icons/youtube.svg";
+import linkedinIcon from "../assets/icons/linkedin.svg"
 import facebookIcon from "../assets/icons/facebook.svg";
 import mediumIcon from "../assets/icons/medium.svg";
 import SpotlightCard from "../Components/AdditionStyles/SpotlightCard";
@@ -498,13 +499,13 @@ const About = () => {
           style={{
             position: "absolute",
             bottom: "60px",
-            left: "450px",
+            left: "500px",
             display: "flex",
             gap: "16px",
             zIndex: 10,
           }}
         >
-          <a
+          {/* <a
             href="https://twitter.com/your_handle"
             target="_blank"
             rel="noopener noreferrer"
@@ -516,9 +517,9 @@ const About = () => {
               height="30"
               style={{ filter: "invert(100%) brightness(200%)" }}
             />
-          </a>
+          </a> */}
           <a
-            href="https://instagram.com/your_handle"
+            href="https://www.instagram.com/build_with_priyanka?igsh=MXFyaWo2enJocXJ1Yg=="
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -530,7 +531,7 @@ const About = () => {
               style={{ filter: "invert(100%) brightness(200%)" }}
             />
           </a>
-          <a
+          {/* <a
             href="https://youtube.com/your_channel"
             target="_blank"
             rel="noopener noreferrer"
@@ -542,9 +543,9 @@ const About = () => {
               height="30"
               style={{ filter: "invert(100%) brightness(200%)" }}
             />
-          </a>
+          </a> */}
           <a
-            href="https://facebook.com/your_handle"
+            href="https://m.facebook.com/prachi.shahasane/"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -557,7 +558,7 @@ const About = () => {
             />
           </a>
           <a
-            href="https://facebook.com/your_handle"
+            href="https://medium.com/@shahasanepriyanka"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -567,6 +568,19 @@ const About = () => {
               width="30"
               height="30"
               style={{ filter: "invert(100%) brightness(200%)" }}
+            />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/priyanka-shahasane/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src={linkedinIcon}
+              alt="Medium"
+              width="30"
+              height="30"
+              style={{  fill:"#fff" }}
             />
           </a>
         </div>

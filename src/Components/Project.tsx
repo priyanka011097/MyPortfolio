@@ -14,7 +14,7 @@ const items = [
     title: "AdvisorX AI",
     subtitle: "Frontend Developer",
     handle: "@website",
-    gradient: "rgba(0, 0, 0, 0.43)",
+    gradient: "rgba(0, 0, 0, 0.23)",
     url: "https://www.advisorx.ai",
   },
   {
@@ -22,7 +22,7 @@ const items = [
     title: "Xneelo",
     subtitle: "Full Stack Developer",
     handle: "@website",
-    gradient: "rgba(0, 0, 0, 0.43)",
+    gradient: "rgba(0, 0, 0, 0.23)",
     url: "https://xneelo.co.za/",
   },
   {
@@ -30,7 +30,7 @@ const items = [
     title: "eInnoSec",
     subtitle: "Project Lead",
     handle: "@website",
-    gradient: "rgba(0, 0, 0, 0.43)",
+    gradient: "rgba(0, 0, 0, 0.23)",
     url: "https://www.einnosec.com/",
   },
   {
@@ -38,7 +38,7 @@ const items = [
     title: "hirelytics",
     subtitle: "AI Engineer Support",
     handle: "Saas",
-    gradient: "rgba(0, 0, 0, 0.43)",
+    gradient: "rgba(0, 0, 0, 0.23)",
     url: "https://saas.hirelytics.io/",
   },
   {
@@ -46,7 +46,7 @@ const items = [
     title: "SecuRetain",
     subtitle: "Project Lead",
     handle: "@website",
-    gradient: "rgba(0, 0, 0, 0.43)",
+    gradient: "rgba(0, 0, 0, 0.23)",
     url: "https://www.securetain.com/",
   },
   {
@@ -54,7 +54,7 @@ const items = [
     title: "The Fifty Element",
     subtitle: "Frontend Developer",
     handle: "@website",
-    gradient: "rgba(0, 0, 0, 0.43)",
+    gradient: "rgba(0, 0, 0, 0.23)",
     url: "https://portal.5thacademy.com/",
   },
   {
@@ -62,7 +62,7 @@ const items = [
     title: "The Smart Fellowship",
     subtitle: "Project Lead",
     handle: "@website",
-    gradient: "rgba(0, 0, 0, 0.43)",
+    gradient: "rgba(0, 0, 0, 0.23)",
     url: "https://www.thesmartfellowship.com/",
   },
   {
@@ -70,7 +70,7 @@ const items = [
     title: "Workverse",
     subtitle: "Solution Architect",
     handle: "@Game+AI",
-    gradient: "rgba(0, 0, 0, 0.43)",
+    gradient: "rgba(0, 0, 0, 0.23)",
     url: "https://play.google.com/store/apps/details?id=com.Workverse.Simulator&pcampaignid=web_share",
   },
 ];

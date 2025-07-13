@@ -63,11 +63,12 @@
   overflow: hidden;
   border: 1px solid #ffffff18;
   transition: border-color 0.3s ease;
+  backdrop-filter: blur(2px);
   background: var(--card-gradient);
 
   --mouse-x: 50%;
   --mouse-y: 50%;
-  --spotlight-color: rgba(211, 100, 56, 0.171);
+  --spotlight-color: rgba(211, 100, 56, 0.267);
 }
 
 .chroma-card:hover {

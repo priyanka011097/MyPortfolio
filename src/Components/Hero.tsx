@@ -71,8 +71,8 @@ const Hero = () => {
           <div
             style={{
               position: "absolute",
-              top: "-30px",
-              left: "-30px",
+              top: "10px",
+              left: "10px",
               zIndex: 10,
             }}
           >

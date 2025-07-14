@@ -1,7 +1,7 @@
 // import { useState } from "react";
 import Priyanka from "../assets/priyanka_new.png";
 import SplitText from "../Components/SplitText";
-import ChatWidget from "../Components/ChatWidget";
+// import ChatWidget from "../Components/ChatWidget";
 import HoverReveal from "../Components/AdditionStyles/HoverReveal";
 import CircularText from "../Components/AdditionStyles/CircularText";
 

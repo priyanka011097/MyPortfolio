@@ -3,6 +3,7 @@ import Priyanka from "../assets/priyanka_new.png";
 import SplitText from "../Components/SplitText";
 import ChatWidget from "../Components/ChatWidget";
 import HoverReveal from "../Components/AdditionStyles/HoverReveal";
+import CircularText from "../Components/AdditionStyles/CircularText";
 
 const Hero = () => {
   const [showChat, setShowChat] = useState(false);
@@ -62,6 +63,27 @@ const Hero = () => {
             textAlign="center"
           />
         </div>
+        <a
+          href="https://open.spotify.com/playlist/2MDMM1EPgbdxzQViDzWWuw?si=yGHFP3ZZRn-hgFGic4lrXA&pi=Ap5A_Pk_TiazJ"
+          style={{ color: "#fff", textDecoration: "none" }}
+          target="_blank"
+        >
+          <div
+            style={{
+              position: "absolute",
+              top: "-30px",
+              left: "-30px",
+              zIndex: 10,
+            }}
+          >
+            <CircularText
+              text="CLICK*FOR*MY*PLAYLIST*  *"
+              onHover="speedUp"
+              spinDuration={20}
+              className="custom-class"
+            />
+          </div>
+        </a>
 
         <div
           style={{
@@ -92,22 +114,27 @@ const Hero = () => {
             </li>
           </ul>
         </div>
- <div className="hover-wrapper">
-  <img src={Priyanka} alt="Priyanka" className="priyanka-img"    style={{
-      width: "100%",
-      objectFit: "contain",
-      borderRadius: "1rem",
-      zIndex: 2,
-      position: "relative",
-    }}/>
-  <HoverReveal />
-</div>
+        <div className="hover-wrapper">
+          <img
+            src={Priyanka}
+            alt="Priyanka"
+            className="priyanka-img"
+            style={{
+              width: "100%",
+              objectFit: "contain",
+              borderRadius: "1rem",
+              zIndex: 2,
+              position: "relative",
+            }}
+          />
+          <HoverReveal />
+        </div>
 
         <div
           style={{
             position: "absolute",
             bottom: "100px",
-            right: "100px",
+            right: "50px",
             maxWidth: "300px",
             fontSize: "1rem",
             lineHeight: "1.6",
@@ -115,12 +142,12 @@ const Hero = () => {
           }}
         >
           <h2 style={{ fontSize: "1.5rem", marginBottom: "10px" }}>
-            My Vision
+            What I do
           </h2>
           <ul>
             <li style={{ whiteSpace: "normal", wordBreak: "break-word" }}>
-              Engineering bold ideas into scalable products with lasting social
-              impact.
+              Engineering Bold Ideas Into Scalable Products With Lasting Social
+              Impact.
             </li>
           </ul>
         </div>

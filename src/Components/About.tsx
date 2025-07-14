@@ -364,7 +364,7 @@ const About = () => {
         >
           <div style={{ marginRight: "40px" }}>
             <h1 style={{ fontSize: "3rem", margin: 0, fontWeight: "lighter" }}>
-              5
+              4
             </h1>
             <p style={{ fontSize: "1.2rem", margin: 0 }}>
               Years of <br /> Experience

@@ -1,5 +1,5 @@
 
-import CircularText from "../Components/AdditionStyles/CircularText";
+
 
 
 const ShowOff = () => {
@@ -32,22 +32,7 @@ const ShowOff = () => {
             <h1>Certificates </h1>
         </div>
       
-            <div
-          style={{
-            position: "absolute",
-            top: "40px",
-            right: "20px",
-            zIndex: 10,
-          }}
-        >
-          <CircularText
-            text="CLICK*FOR*MY*PLAYLIST*  *"
-            onHover="speedUp"
-            spinDuration={20}
-            className="custom-class"
-          />
-        </div>
- 
+          
       </section>
     </>
   );

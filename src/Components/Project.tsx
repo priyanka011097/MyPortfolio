@@ -1,6 +1,5 @@
 import { ChromaGrid } from "./AdditionStyles/ChromaItem";
 import advisorxai from "../assets/sites/advisorxai.png";
-import domainsystem from "../assets/sites/domainsystem.png";
 import einnosec from "../assets/sites/einnosec.png";
 import hirelytics from "../assets/sites/hirelytics.png";
 import securetain from "../assets/sites/securetain.png";
@@ -10,20 +9,12 @@ import workverse from "../assets/sites/workverse.png";
 
 const items = [
   {
-    image: advisorxai,
-    title: "AdvisorX AI",
-    subtitle: "Frontend Developer",
-    handle: "@website",
+    image: workverse,
+    title: "Workverse",
+    subtitle: "Solution Architect",
+    handle: "@Game+AI",
     gradient: "rgba(0, 0, 0, 0.23)",
-    url: "https://www.advisorx.ai",
-  },
-  {
-    image: domainsystem,
-    title: "Xneelo",
-    subtitle: "Full Stack Developer",
-    handle: "@website",
-    gradient: "rgba(0, 0, 0, 0.23)",
-    url: "https://xneelo.co.za/",
+    url: "https://play.google.com/store/apps/details?id=com.Workverse.Simulator&pcampaignid=web_share",
   },
   {
     image: einnosec,
@@ -65,13 +56,14 @@ const items = [
     gradient: "rgba(0, 0, 0, 0.23)",
     url: "https://www.thesmartfellowship.com/",
   },
-  {
-    image: workverse,
-    title: "Workverse",
-    subtitle: "Solution Architect",
-    handle: "@Game+AI",
+
+    {
+    image: advisorxai,
+    title: "AdvisorX AI",
+    subtitle: "Frontend Developer",
+    handle: "@website",
     gradient: "rgba(0, 0, 0, 0.23)",
-    url: "https://play.google.com/store/apps/details?id=com.Workverse.Simulator&pcampaignid=web_share",
+    url: "https://www.advisorx.ai",
   },
 ];
 

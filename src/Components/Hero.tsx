@@ -1,4 +1,4 @@
-import { useState } from "react";
+// import { useState } from "react";
 import Priyanka from "../assets/priyanka_new.png";
 import SplitText from "../Components/SplitText";
 import ChatWidget from "../Components/ChatWidget";
@@ -6,7 +6,7 @@ import HoverReveal from "../Components/AdditionStyles/HoverReveal";
 import CircularText from "../Components/AdditionStyles/CircularText";
 
 const Hero = () => {
-  const [showChat, setShowChat] = useState(false);
+  // const [showChat, setShowChat] = useState(false);
   return (
     <>
       <style>
@@ -152,7 +152,7 @@ const Hero = () => {
           </ul>
         </div>
         <div>
-          <button
+          {/* <button
             onClick={() => setShowChat((prev) => !prev)}
             style={{
               position: "absolute",
@@ -172,8 +172,8 @@ const Hero = () => {
             aria-label="Schedule a Call"
           >
             {" "}
-          </button>
-          <span
+          </button> */}
+          {/* <span
             style={{
               position: "absolute",
               whiteSpace: "nowrap",
@@ -185,8 +185,8 @@ const Hero = () => {
             }}
           >
             Schedule a Call
-          </span>
-          {showChat && <ChatWidget />}
+          </span> */}
+          {/* {showChat && <ChatWidget />} */}
         </div>
       </section>
     </>

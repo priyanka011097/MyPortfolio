@@ -6,8 +6,17 @@ import securetain from "../assets/sites/securetain.png";
 import thefiftyelement from "../assets/sites/thefiftyelement.png";
 import thesmartfellowship from "../assets/sites/thesmartfellowship.png";
 import workverse from "../assets/sites/workverse.png";
+import flatswale from "../assets/sites/flatswale.png";
 
 const items = [
+  {
+    image: flatswale,
+    title: "FlatsWale",
+    subtitle: "Co-founder",
+    handle: "@website",
+    gradient: "rgba(0, 0, 0, 0.23)",
+    url: "https://www.flatswale.com/",
+  },
   {
     image: workverse,
     title: "Workverse",
@@ -57,7 +66,7 @@ const items = [
     url: "https://www.thesmartfellowship.com/",
   },
 
-    {
+  {
     image: advisorxai,
     title: "AdvisorX AI",
     subtitle: "Frontend Developer",
@@ -76,7 +85,8 @@ const Project = () => {
           width: "100vw",
           height: "100vh",
           flex: "0 0 100vw",
-          background: "linear-gradient(to right,rgb(0, 0, 0),rgb(0, 26, 31),rgb(0, 26, 31))",
+          background:
+            "linear-gradient(to right,rgb(0, 0, 0),rgb(0, 26, 31),rgb(0, 26, 31))",
           color: "white",
           display: "flex",
           alignItems: "center",

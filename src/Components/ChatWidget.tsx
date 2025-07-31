@@ -12,13 +12,7 @@ interface ChatWidgetProps {
 }
 
 export default function ChatWidget({ onClose }: ChatWidgetProps) {
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      from: "bot",
-      text: "Hi! I'm Priyanka's AI assistant. I can help you schedule a 30-minute call with her. Just let me know when you'd like to meet!",
-      timestamp: new Date(),
-    },
-  ]);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -203,6 +197,19 @@ export default function ChatWidget({ onClose }: ChatWidgetProps) {
           gap: "15px",
         }}
       >
+        {messages.length === 0 && (
+          <div style={{ 
+            display: "flex", 
+            justifyContent: "center", 
+            alignItems: "center", 
+            height: "100%",
+            color: "rgba(255, 255, 255, 0.5)",
+            fontSize: "14px",
+            textAlign: "center"
+          }}>
+            Start a conversation with Priyanka's AI assistant...
+          </div>
+        )}
         {messages.map((msg, i) => (
           <div
             key={i}

@@ -1,9 +1,10 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Hero from './Components/Hero'
 import About from './Components/About'
 import Project from './Components/Project'
 // import ShowOff from './Components/ShowOff'
 import CursorFollower from "../src/Components/AdditionStyles/CursorFollower";
+import ChatWidget from './Components/ChatWidget'
 import './App.css'
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
   const isDragging = useRef(false)
   const startX = useRef(0)
   const scrollLeft = useRef(0)
+  const [showChat, setShowChat] = useState(false)
 
   useEffect(() => {
     const container = scrollRef.current
@@ -95,6 +97,35 @@ function App() {
       <About />
       <Project />
       {/* <ShowOff /> */}
+      
+      {/* Chat Widget */}
+      {showChat && <ChatWidget onClose={() => setShowChat(false)} />}
+      
+      {/* Chat Toggle Button */}
+      <button
+        onClick={() => setShowChat(!showChat)}
+        style={{
+          position: 'fixed',
+          bottom: '20px',
+          right: '20px',
+          width: '60px',
+          height: '60px',
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgb(255, 255, 255), rgb(0, 247, 255))',
+          border: 'none',
+          cursor: 'pointer',
+          fontSize: '24px',
+          boxShadow: '0 4px 20px rgba(0, 247, 255, 0.3)',
+          zIndex: 1000,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: '#000',
+          fontWeight: 'bold'
+        }}
+      >
+        💬
+      </button>
     </div>
   )
 }

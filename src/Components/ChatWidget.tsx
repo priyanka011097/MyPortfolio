@@ -37,6 +37,8 @@ export default function ChatWidget({ onClose }: ChatWidgetProps) {
     const userMessage = input.trim();
     setInput("");
 
+    console.log('💬 User sent message:', userMessage);
+
     setMessages((prev) => [
       ...prev,
       { from: "user", text: userMessage, timestamp: new Date() },
@@ -45,19 +47,22 @@ export default function ChatWidget({ onClose }: ChatWidgetProps) {
     setIsTyping(true);
 
     try {
+      console.log('🔄 Getting bot reply...');
       const reply = await getBotReply(userMessage);
+      console.log('🤖 Bot reply received:', reply);
 
       setMessages((prev) => [
         ...prev,
         { from: "bot", text: reply, timestamp: new Date() },
       ]);
     } catch (error) {
-      console.error("Error getting bot reply:", error);
+      console.error("❌ Error getting bot reply:", error);
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
       setMessages((prev) => [
         ...prev,
         {
           from: "bot",
-          text: "Sorry, I'm having trouble connecting right now. You can still book a meeting directly at: https://calendly.com/shahasanepriyanka/30min",
+          text: `Sorry, I'm having trouble connecting right now. Error: ${errorMessage}. You can still book a meeting directly at: https://calendly.com/shahasanepriyanka/30min`,
           timestamp: new Date(),
         },
       ]);
@@ -134,25 +139,57 @@ export default function ChatWidget({ onClose }: ChatWidgetProps) {
             </p>
           </div>
         </div>
-        <button
-          onClick={onClose}
-          style={{
-            background: "none",
-            border: "none",
-            color: "#fff",
-            fontSize: "20px",
-            cursor: "pointer",
-            padding: "5px",
-            borderRadius: "50%",
-            width: "30px",
-            height: "30px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          ×
-        </button>
+        <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+          <button
+            onClick={async () => {
+              console.log('🧪 Testing API connection...');
+              try {
+                const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001';
+                const response = await fetch(`${API_BASE_URL}/api/health`);
+                if (response.ok) {
+                  console.log('✅ API connection working');
+                  alert('✅ API connection is working!');
+                } else {
+                  console.log('❌ API connection failed');
+                  alert('❌ API connection failed');
+                }
+              } catch (error) {
+                console.error('❌ API test failed:', error);
+                alert('❌ API test failed: ' + error);
+              }
+            }}
+            style={{
+              background: "rgba(0, 247, 255, 0.2)",
+              border: "1px solid rgba(0, 247, 255, 0.3)",
+              color: "#fff",
+              fontSize: "12px",
+              cursor: "pointer",
+              padding: "4px 8px",
+              borderRadius: "4px",
+            }}
+          >
+            Test
+          </button>
+          <button
+            onClick={onClose}
+            style={{
+              background: "none",
+              border: "none",
+              color: "#fff",
+              fontSize: "20px",
+              cursor: "pointer",
+              padding: "5px",
+              borderRadius: "50%",
+              width: "30px",
+              height: "30px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            ×
+          </button>
+        </div>
       </div>
 
       {/* Messages */}

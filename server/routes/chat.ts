@@ -6,6 +6,29 @@ import { ChatRequest, ChatResponse, Message } from '../types';
 
 const router = Router();
 
+// Helper function to determine if we should send a progress email
+const shouldSendProgressEmail = (updates: any, currentDetails: any): boolean => {
+  // Send email when we collect key information
+  const hasKeyInfo = 
+    updates.clientName || 
+    updates.companyName || 
+    updates.phoneNumber || 
+    updates.email || 
+    updates.projectIdea || 
+    updates.budget;
+    
+  // Send email when we have enough info to be valuable
+  const hasEnoughInfo = 
+    (currentDetails.clientName || updates.clientName) &&
+    (currentDetails.projectIdea || updates.projectIdea) &&
+    (currentDetails.phoneNumber || updates.phoneNumber || currentDetails.email || updates.email);
+    
+  // Send email when budget is mentioned (important for business)
+  const hasBudget = updates.budget || currentDetails.budget;
+  
+  return hasKeyInfo && (hasEnoughInfo || hasBudget);
+};
+
 // POST /api/chat - Handle chat messages
 router.post('/', async (req: Request, res: Response) => {
   try {
@@ -56,6 +79,22 @@ router.post('/', async (req: Request, res: Response) => {
     if (Object.keys(aiResponse.projectUpdates).length > 0) {
       conversationManager.updateProjectDetails(currentSessionId, aiResponse.projectUpdates);
       console.log(`📝 Updated project details:`, aiResponse.projectUpdates);
+      
+      // Send email when significant information is collected
+      const session = conversationManager.getSession(currentSessionId);
+      if (session && shouldSendProgressEmail(aiResponse.projectUpdates, session.projectDetails)) {
+        emailService.sendProjectSummary(session, 'progress_update')
+          .then(success => {
+            if (success) {
+              console.log(`📧 Progress email sent for session: ${currentSessionId}`);
+            } else {
+              console.log(`❌ Failed to send progress email for session: ${currentSessionId}`);
+            }
+          })
+          .catch(error => {
+            console.error(`❌ Progress email error for session ${currentSessionId}:`, error);
+          });
+      }
     }
 
     // Add bot response to conversation

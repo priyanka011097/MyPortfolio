@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 import { ConversationContext, ProjectDetails, Message } from '../types';
+import { emailService } from './emailService';
 
 class ConversationManager {
   private conversations: Map<string, ConversationContext> = new Map();
@@ -31,6 +32,8 @@ class ConversationManager {
     const timeDiff = now.getTime() - context.lastActivity.getTime();
     
     if (timeDiff > this.SESSION_TIMEOUT) {
+      // Send email before deleting expired session
+      this.sendExpiredSessionEmail(context);
       this.conversations.delete(sessionId);
       return null;
     }
@@ -84,12 +87,39 @@ class ConversationManager {
     return context;
   }
 
+  // Send email for expired sessions
+  private sendExpiredSessionEmail(context: ConversationContext): void {
+    // Only send email if we have meaningful data
+    const hasMeaningfulData = 
+      context.projectDetails.clientName ||
+      context.projectDetails.projectIdea ||
+      context.projectDetails.phoneNumber ||
+      context.projectDetails.email ||
+      context.projectDetails.budget;
+
+    if (hasMeaningfulData && context.messages.length > 1) {
+      emailService.sendProjectSummary(context, 'session_expired')
+        .then(success => {
+          if (success) {
+            console.log(`📧 Expired session email sent for: ${context.sessionId}`);
+          } else {
+            console.log(`❌ Failed to send expired session email for: ${context.sessionId}`);
+          }
+        })
+        .catch(error => {
+          console.error(`❌ Expired session email error for ${context.sessionId}:`, error);
+        });
+    }
+  }
+
   // Cleanup expired sessions
   cleanupExpiredSessions(): void {
     const now = new Date();
     for (const [sessionId, context] of this.conversations.entries()) {
       const timeDiff = now.getTime() - context.lastActivity.getTime();
       if (timeDiff > this.SESSION_TIMEOUT) {
+        // Send email before deleting
+        this.sendExpiredSessionEmail(context);
         this.conversations.delete(sessionId);
       }
     }

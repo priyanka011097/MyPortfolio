@@ -23,10 +23,22 @@ class EmailService {
   }
 
   private formatProjectDetails(projectDetails: ProjectDetails): string {
- const details: string[] = [];
+    const details: string[] = [];
     
     if (projectDetails.clientName) {
       details.push(`<strong>Client Name:</strong> ${projectDetails.clientName}`);
+    }
+    if (projectDetails.designation) {
+      details.push(`<strong>Designation:</strong> ${projectDetails.designation}`);
+    }
+    if (projectDetails.companyName) {
+      details.push(`<strong>Company:</strong> ${projectDetails.companyName}`);
+    }
+    if (projectDetails.phoneNumber) {
+      details.push(`<strong>Phone:</strong> ${projectDetails.phoneNumber}`);
+    }
+    if (projectDetails.email) {
+      details.push(`<strong>Email:</strong> ${projectDetails.email}`);
     }
     if (projectDetails.projectIdea) {
       details.push(`<strong>Project Idea:</strong> ${projectDetails.projectIdea}`);
@@ -61,7 +73,7 @@ class EmailService {
     subject: string,
     projectDetails: ProjectDetails,
     conversationHistory: any[],
-    reason: 'conversation_end' | 'calendly_booked'
+    reason: 'conversation_end' | 'calendly_booked' | 'progress_update' | 'session_expired'
   ): string {
     const calendlyStatus = projectDetails.calendlyBooked 
       ? '<span style="color: #28a745;">✅ Calendly meeting scheduled</span>'
@@ -122,12 +134,25 @@ class EmailService {
 
   async sendProjectSummary(
     conversationContext: ConversationContext,
-    reason: 'conversation_end' | 'calendly_booked'
+    reason: 'conversation_end' | 'calendly_booked' | 'progress_update' | 'session_expired'
   ): Promise<boolean> {
     try {
-      const subject = reason === 'calendly_booked' 
-        ? '🎉 New Calendly Booking - Project Summary'
-        : '📝 Conversation Summary - Project Details';
+      let subject: string;
+      switch (reason) {
+        case 'calendly_booked':
+          subject = '🎉 New Calendly Booking - Project Summary';
+          break;
+        case 'progress_update':
+          subject = '📊 New Lead Progress Update';
+          break;
+        case 'session_expired':
+          subject = '⏰ Session Expired - Lead Data Captured';
+          break;
+        case 'conversation_end':
+        default:
+          subject = '📝 Conversation Summary - Project Details';
+          break;
+      }
 
       const emailData: EmailData = {
         to: this.TO_EMAIL,
@@ -155,7 +180,7 @@ class EmailService {
 
   private createTextVersion(
     conversationContext: ConversationContext,
-    reason: 'conversation_end' | 'calendly_booked'
+    reason: 'conversation_end' | 'calendly_booked' | 'progress_update' | 'session_expired'
   ): string {
     const { projectDetails, messages } = conversationContext;
     
@@ -165,6 +190,10 @@ class EmailService {
     
     text += `Project Details:\n`;
     if (projectDetails.clientName) text += `Client Name: ${projectDetails.clientName}\n`;
+    if (projectDetails.designation) text += `Designation: ${projectDetails.designation}\n`;
+    if (projectDetails.companyName) text += `Company: ${projectDetails.companyName}\n`;
+    if (projectDetails.phoneNumber) text += `Phone: ${projectDetails.phoneNumber}\n`;
+    if (projectDetails.email) text += `Email: ${projectDetails.email}\n`;
     if (projectDetails.projectIdea) text += `Project Idea: ${projectDetails.projectIdea}\n`;
     if (projectDetails.timeline) text += `Timeline: ${projectDetails.timeline}\n`;
     if (projectDetails.budget) text += `Budget: ${projectDetails.budget}\n`;

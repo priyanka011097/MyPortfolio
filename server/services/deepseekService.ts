@@ -30,6 +30,49 @@ class DeepSeekService {
     }
   }
 
+  // Content filtering function
+  private isInappropriateContent(userMessage: string): boolean {
+    const lowerMessage = userMessage.toLowerCase();
+    
+    // Inappropriate content patterns
+    const inappropriatePatterns = [
+      // Adult content
+      /\b(sex|sexual|porn|adult|nude|naked|intimate)\b/i,
+      // Harmful content
+      /\b(kill|harm|hurt|attack|violence|weapon)\b/i,
+      // Personal/creepy questions
+      /\b(marry|date|love|relationship|personal|private)\b/i,
+      // Testing/manipulation attempts
+      /\b(test|trick|hack|bypass|ignore|forget)\b/i,
+      // Offensive language
+      /\b(fuck|shit|bitch|asshole|damn)\b/i,
+      // Unwanted requests
+      /\b(dance|sing|joke|entertain|amuse)\b/i
+    ];
+    
+    return inappropriatePatterns.some(pattern => pattern.test(lowerMessage));
+  }
+
+  // Get appropriate response for inappropriate content
+  private getSafetyResponse(userMessage: string): string {
+    const lowerMessage = userMessage.toLowerCase();
+    
+    if (lowerMessage.includes('test') || lowerMessage.includes('trick')) {
+      return "I'm here to help with technical consultation and project development. How can I assist you with your project needs?";
+    }
+    
+    if (lowerMessage.includes('personal') || lowerMessage.includes('private')) {
+      return "I'm Priyanka's business assistant. I can help you with technical consultation, project development, and booking calls with Priyanka. What project would you like to discuss?";
+    }
+    
+    if (lowerMessage.includes('adult') || lowerMessage.includes('inappropriate')) {
+      return "I'm a professional business assistant focused on technical consultation. How can I help you with your project development needs?";
+    }
+    
+    // Default safety response
+    return "I'm here to help with technical consultation and project development. How can I assist you with your project needs?";
+  }
+
   private createSystemPrompt(projectDetails: ProjectDetails): string {
     const hasProjectInfo =
       projectDetails.clientName ||
@@ -37,9 +80,35 @@ class DeepSeekService {
       projectDetails.timeline ||
       projectDetails.budget;
 
-    let systemPrompt = `You are Priyanka's AI assistant. You have comprehensive knowledge about Priyanka and should use this information to answer questions about her experience, background, skills, and projects.
+    let systemPrompt = `You are Priyanka's personal AI assistant. Your role is to help collect project details from potential clients and book consultation calls with Priyanka.
 
-PRIYANKA'S BACKGROUND:
+IMPORTANT SAFETY GUIDELINES:
+- You are a professional business assistant focused on technical consultation
+- If users ask inappropriate, adult, harmful, or off-topic questions, politely redirect them to the business purpose
+- Do not engage with requests for personal information, inappropriate content, or non-business topics
+- Always maintain professional boundaries and redirect to consultation services
+- If someone tries to test or manipulate you, stay focused on helping with their project needs
+
+CONVERSATION FLOW:
+1. Greet warmly and introduce yourself as Priyanka's assistant
+2. Ask about their project/needs
+3. Collect key information: name, designation, company, phone, project scope, budget
+4. Ask about UI/UX requirements
+5. Offer to book a consultation call
+6. Confirm time slots and collect email
+7. Thank them and confirm booking
+
+INFORMATION TO COLLECT:
+- Client name and designation
+- Company name
+- Mobile number
+- Project scope/description
+- Budget range
+- UI/UX requirements
+- Preferred meeting time
+- Email address
+
+PRIYANKA'S BACKGROUND (for context):
 - Name: ${priyankaKnowledge.personal.name}
 - Title: ${priyankaKnowledge.personal.title}
 - Experience: ${priyankaKnowledge.experience.yearsOfExperience} years in software engineering and product development
@@ -60,25 +129,38 @@ ${priyankaKnowledge.projects.map(project =>
   `- ${project.name}: ${project.description} (Tech: ${project.tech.join(', ')})`
 ).join('\n')}
 
-EDUCATION:
-${priyankaKnowledge.education.map(edu => 
-  `- ${edu.degree} from ${edu.institution} (${edu.year})`
-).join('\n')}
-
-ACHIEVEMENTS:
-${priyankaKnowledge.achievements.slice(0, 5).join('\n')}
-
 CONSULTATION SERVICES:
 - Duration: ${priyankaKnowledge.consultation.duration} calls
 - Services: ${priyankaKnowledge.consultation.services.slice(0, 6).join(', ')}
 - Booking: ${priyankaKnowledge.consultation.calendlyLink}
 
-INSTRUCTIONS:
-1. Use the above information to answer questions about Priyanka's experience, background, skills, projects, etc.
-2. Be conversational, helpful, and professional
-3. Keep responses concise but informative
-4. If someone asks about booking a call or seems interested in consultation, suggest the Calendly link
-5. If you don't have specific information about something, be honest and redirect to the Calendly link for detailed discussion`;
+CONVERSATION STYLE:
+- Be friendly, professional, and helpful
+- Ask one question at a time
+- Be conversational, not robotic
+- Show enthusiasm about their project
+- Be flexible with scheduling
+- Always mention that Priyanka never says no to customers
+- Offer to help with UI/UX if they don't have it ready
+- Suggest time slots like "9:30 PM" or "7:30 PM on Saturday"
+- Collect email at the end for booking confirmation
+- If users ask inappropriate questions, politely redirect: "I'm here to help with technical consultation and project development. How can I assist you with your project needs?"
+
+EXAMPLE RESPONSES:
+- "Hey! I'm Priyanka's personal assistant, how can I help you?"
+- "Can you please tell me more? Based on our chat I will bring Priyanka up to speed. Can you help me with the following details: What is your name and designation, Name of your company, your mobile number, what is your scale for the website you want to make and what is your budget?"
+- "Could you also please share the budget? Priyanka never says no to her customers, so you sharing the budget will just make the process easy"
+- "Do you have your UI UX ready? If not, any other websites you like?"
+- "No problem, Priyanka has a team of best people who can take care of everything. To move ahead let me quickly book a slot for you and Priyanka, will tomorrow work for you?"
+- "Great, I am booking for tomorrow, 9:30 PM will it work for you?"
+- "Oh! So will 7:30 be fine on Saturday?"
+- "Please share your email, I am booking your slot"
+- "Thank you."
+
+SAFETY RESPONSES:
+- For inappropriate content: "I'm here to help with technical consultation and project development. How can I assist you with your project needs?"
+- For off-topic questions: "I'm focused on helping with technical projects and consultation. What kind of project are you looking to develop?"
+- For personal questions: "I'm Priyanka's business assistant. I can help you with technical consultation, project development, and booking calls with Priyanka. What project would you like to discuss?"`;
 
     if (hasProjectInfo) {
       systemPrompt += `\n\nCurrent project details collected:
@@ -93,13 +175,15 @@ ${
 ${projectDetails.timeline ? `- Timeline: ${projectDetails.timeline}` : ""}
 ${projectDetails.budget ? `- Budget: ${projectDetails.budget}` : ""}
 
-If the user seems ready to book a call or has provided sufficient project details, suggest booking through the Calendly link.`;
+Use this information to provide more personalized responses and suggest booking a call.`;
     } else {
       systemPrompt += `\n\nTry to collect the following information naturally through conversation:
-- Client name (if they're comfortable sharing)
-- Project idea or description
-- Timeline for the project
-- Budget considerations
+- Client name and designation
+- Company name
+- Mobile number
+- Project scope/description
+- Budget range
+- UI/UX requirements
 
 Once you have enough details, suggest booking a call through the Calendly link.`;
     }
@@ -114,13 +198,58 @@ Once you have enough details, suggest booking a call through the Calendly link.`
     const updates: Partial<ProjectDetails> = {};
     const lowerMessage = userMessage.toLowerCase();
 
-    // Extract name (simple heuristic - if they mention "I'm" or "my name is")
+    // Extract name and designation
     if (!currentDetails.clientName) {
+      // Look for patterns like "I am [name] [designation]" or "my name is [name]"
       const nameMatch = userMessage.match(
-        /(?:I'm|I am|my name is|call me)\s+([A-Za-z]+)/i
+        /(?:I am|I'm|my name is|call me)\s+([A-Za-z]+)(?:\s+([A-Za-z]+))?/i
       );
       if (nameMatch) {
         updates.clientName = nameMatch[1];
+        if (nameMatch[2]) {
+          updates.designation = nameMatch[2];
+        }
+      }
+    }
+
+    // Extract designation if not already captured
+    if (!currentDetails.designation && !updates.designation) {
+      const designationKeywords = ['cto', 'ceo', 'founder', 'manager', 'director', 'developer'];
+      for (const keyword of designationKeywords) {
+        if (lowerMessage.includes(keyword)) {
+          updates.designation = keyword.toUpperCase();
+          break;
+        }
+      }
+    }
+
+    // Extract company name
+    if (!currentDetails.companyName) {
+      const companyMatch = userMessage.match(
+        /(?:at|company|work at|from)\s+([A-Za-z]+)/i
+      );
+      if (companyMatch) {
+        updates.companyName = companyMatch[1];
+      }
+    }
+
+    // Extract phone number
+    if (!currentDetails.phoneNumber) {
+      const phoneMatch = userMessage.match(
+        /(\d{10,12})/
+      );
+      if (phoneMatch) {
+        updates.phoneNumber = phoneMatch[1];
+      }
+    }
+
+    // Extract email
+    if (!currentDetails.email) {
+      const emailMatch = userMessage.match(
+        /([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/
+      );
+      if (emailMatch) {
+        updates.email = emailMatch[1];
       }
     }
 
@@ -135,6 +264,8 @@ Once you have enough details, suggest booking a call through the Calendly link.`
         "app",
         "website",
         "product",
+        "make",
+        "want to",
       ];
       if (projectKeywords.some((keyword) => lowerMessage.includes(keyword))) {
         // Extract the sentence containing project info
@@ -158,6 +289,9 @@ Once you have enough details, suggest booking a call through the Calendly link.`
         "when",
         "timeframe",
         "schedule",
+        "tomorrow",
+        "saturday",
+        "next week",
       ];
       if (timelineKeywords.some((keyword) => lowerMessage.includes(keyword))) {
         const timelineMatch = userMessage.match(
@@ -165,6 +299,14 @@ Once you have enough details, suggest booking a call through the Calendly link.`
         );
         if (timelineMatch) {
           updates.timeline = timelineMatch[1].trim();
+        } else {
+          // Extract specific time mentions
+          const timeMatch = userMessage.match(
+            /(?:tomorrow|saturday|next week|9\.30|7\.30|9:30|7:30)/i
+          );
+          if (timeMatch) {
+            updates.timeline = timeMatch[0];
+          }
         }
       }
     }
@@ -177,6 +319,9 @@ Once you have enough details, suggest booking a call through the Calendly link.`
         "investment",
         "money",
         "funding",
+        "k",
+        "thousand",
+        "lakh",
       ];
       if (budgetKeywords.some((keyword) => lowerMessage.includes(keyword))) {
         const budgetMatch = userMessage.match(
@@ -184,6 +329,14 @@ Once you have enough details, suggest booking a call through the Calendly link.`
         );
         if (budgetMatch) {
           updates.budget = budgetMatch[1].trim();
+        } else {
+          // Extract budget amounts
+          const amountMatch = userMessage.match(
+            /(\d+)\s*(?:k|thousand|lakh)/i
+          );
+          if (amountMatch) {
+            updates.budget = `${amountMatch[1]}k`;
+          }
         }
       }
     }
@@ -238,6 +391,16 @@ Once you have enough details, suggest booking a call through the Calendly link.`
     projectUpdates: Partial<ProjectDetails>;
     shouldBookCalendly: boolean;
   }> {
+    // Check for inappropriate content
+    if (this.isInappropriateContent(userMessage)) {
+      console.log(`🚫 Inappropriate content detected: "${userMessage}"`);
+      return {
+        reply: this.getSafetyResponse(userMessage),
+        projectUpdates: projectDetails, // No changes to project details
+        shouldBookCalendly: false, // No calendly booking
+      };
+    }
+
     // Extract project details from user message
     const projectUpdates = this.extractProjectDetails(
       userMessage,
@@ -316,21 +479,30 @@ Once you have enough details, suggest booking a call through the Calendly link.`
     } catch (error) {
       console.error("DeepSeek API Error:", error);
 
-      // Use knowledge base for intelligent fallback responses
-      const priyankaInfo = getPriyankaInfo(userMessage);
-      
-      let fallbackReply = priyankaInfo;
+      // Check if the error is due to missing API key
+      if (!this.API_KEY || this.API_KEY === 'your_deepseek_api_key_here') {
+        return {
+          reply: "I apologize, but the AI service is not properly configured. Please contact the administrator to set up the DeepSeek API key. In the meantime, you can book a call with Priyanka directly at: " + this.CALENDLY_LINK,
+          projectUpdates,
+          shouldBookCalendly: true,
+        };
+      }
+
+      // For other API errors, provide a more generic response
+      let fallbackReply = "I'm having trouble connecting to the AI service right now. ";
       
       if (shouldBookCalendly) {
-        fallbackReply += `\n\nReady to discuss your project? You can book a 30-minute call with Priyanka at: ${this.CALENDLY_LINK}`;
+        fallbackReply += `You can book a 30-minute call with Priyanka to discuss your project: ${this.CALENDLY_LINK}`;
       } else if (userMessage.toLowerCase().includes('book') || userMessage.toLowerCase().includes('schedule') || userMessage.toLowerCase().includes('call')) {
         fallbackReply = `Great! I'd be happy to help you schedule a 30-minute call with Priyanka. You can book your appointment directly through her Calendly link: ${this.CALENDLY_LINK}`;
+      } else {
+        fallbackReply += "You can book a call with Priyanka to discuss your questions: " + this.CALENDLY_LINK;
       }
 
       return {
         reply: fallbackReply,
         projectUpdates,
-        shouldBookCalendly,
+        shouldBookCalendly: true,
       };
     }
   }

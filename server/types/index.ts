@@ -16,6 +16,10 @@ export interface ConversationContext {
 
 export interface ProjectDetails {
   clientName?: string;
+  designation?: string;
+  companyName?: string;
+  phoneNumber?: string;
+  email?: string;
   projectIdea?: string;
   timeline?: string;
   budget?: string;

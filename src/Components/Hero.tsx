@@ -1,12 +1,12 @@
-// import { useState } from "react";
+import { useState } from "react";
 import Priyanka from "../assets/priyanka_new.png";
 import SplitText from "../Components/SplitText";
-// import ChatWidget from "../Components/ChatWidget";
+import ChatWidget from "../Components/ChatWidget";
 import HoverReveal from "../Components/AdditionStyles/HoverReveal";
 import CircularText from "../Components/AdditionStyles/CircularText";
 
 const Hero = () => {
-  // const [showChat, setShowChat] = useState(false);
+  const [showChat, setShowChat] = useState(false);
   return (
     <>
       <style>
@@ -152,14 +152,14 @@ const Hero = () => {
           </ul>
         </div>
         <div>
-          {/* <button
+          <button
             onClick={() => setShowChat((prev) => !prev)}
             style={{
               position: "absolute",
               bottom: "40px",
               right: "50px",
-              width: "50px",
-              height: "50px",
+              width: "60px",
+              height: "60px",
               borderRadius: "50%",
               border: "none",
               background:
@@ -167,13 +167,17 @@ const Hero = () => {
               animation: "pulse 3s infinite",
               cursor: "pointer",
               zIndex: 2,
-              boxShadow: "0 0 20px rgba(0, 247, 255, 0.)",
+              boxShadow: "0 0 20px rgba(0, 247, 255, 0.5)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: "24px",
             }}
-            aria-label="Schedule a Call"
+            aria-label="Chat with AI Assistant"
           >
-            {" "}
-          </button> */}
-          {/* <span
+            🤖
+          </button>
+          <span
             style={{
               position: "absolute",
               whiteSpace: "nowrap",
@@ -184,9 +188,9 @@ const Hero = () => {
               fontSize: "1rem",
             }}
           >
-            Schedule a Call
-          </span> */}
-          {/* {showChat && <ChatWidget />} */}
+            AI Assistant
+          </span>
+          {showChat && <ChatWidget onClose={() => setShowChat(false)} />}
         </div>
       </section>
     </>

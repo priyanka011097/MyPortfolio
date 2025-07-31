@@ -1,6 +1,56 @@
-# React + TypeScript + Vite
+# Priyanka's Portfolio with AI Assistant
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is Priyanka's personal portfolio website featuring an AI-powered chatbot assistant that can help visitors schedule consultation calls.
+
+## Features
+
+- **AI Chatbot**: Intelligent assistant powered by Perplexity API
+- **Calendly Integration**: Direct booking for 30-minute consultation calls
+- **Modern UI**: Beautiful, responsive design with smooth animations
+- **Real-time Chat**: Live conversation with typing indicators and timestamps
+
+## AI Assistant Features
+
+The chatbot can help with:
+- Scheduling 30-minute consultation calls
+- Answering questions about Priyanka's work
+- Providing information about services offered
+- Directing users to the Calendly booking link
+
+## Setup
+
+1. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+
+2. **Environment Variables**:
+   Create a `.env` file in the root directory:
+   ```env
+   VITE_PERPLEXITY_API_KEY=your_perplexity_api_key_here
+   ```
+   
+   Get your Perplexity API key from: https://www.perplexity.ai/settings/api
+
+3. **Run the development server**:
+   ```bash
+   npm run dev
+   ```
+
+## Usage
+
+- Click the AI Assistant button (🤖) in the bottom-right corner of the hero section
+- Start a conversation with the chatbot
+- Ask about booking a call or any questions about Priyanka's services
+- The chatbot will provide the Calendly link for scheduling
+
+## Technology Stack
+
+- React 19 with TypeScript
+- Vite for build tooling
+- Perplexity AI API for chatbot intelligence
+- Tailwind CSS for styling
+- Framer Motion for animations
 
 Currently, two official plugins are available:
 

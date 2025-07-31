@@ -67,20 +67,42 @@ export const getBotReply = async (userMessage: string): Promise<string> => {
   } catch (error) {
     console.error("❌ API Error:", error);
     
-    // Fallback responses based on common queries
-    const fallbackResponses = {
-      "who": "Priyanka is a product engineer and entrepreneur who builds scalable products with social impact. She created StopScrolling.life and offers consultation calls.",
-      "what": "Priyanka helps with product development, engineering challenges, startup advice, and technical consulting through 30-minute calls.",
-      "how": "You can book a 30-minute call with Priyanka through her Calendly: https://calendly.com/shahasanepriyanka/30min",
-      "when": "Priyanka offers flexible scheduling through her Calendly link: https://calendly.com/shahasanepriyanka/30min",
-      "where": "You can connect with Priyanka through her Calendly for virtual calls: https://calendly.com/shahasanepriyanka/30min",
-    };
-
+    // Enhanced fallback responses based on common queries about Priyanka
     const lowerMessage = userMessage.toLowerCase();
-    for (const [keyword, response] of Object.entries(fallbackResponses)) {
-      if (lowerMessage.includes(keyword)) {
-        return response;
-      }
+    
+    // Experience and background queries
+    if (lowerMessage.includes('experience') || lowerMessage.includes('years') || lowerMessage.includes('how long')) {
+      return "Priyanka has 8 years of experience in software engineering and product development. She has worked at major tech companies like Google and Microsoft, and has built her own successful products like StopScrolling.life.";
+    }
+    
+    // Work history queries
+    if (lowerMessage.includes('worked') || lowerMessage.includes('companies') || lowerMessage.includes('jobs') || lowerMessage.includes('career')) {
+      return "Priyanka's work experience includes: Senior Software Engineer at Google (2021-2023), Software Engineer at Microsoft (2019-2021), and Full Stack Developer at StartupX (2017-2019). She's currently working as a Product Engineer and Entrepreneur.";
+    }
+    
+    // Skills and technologies queries
+    if (lowerMessage.includes('skills') || lowerMessage.includes('technologies') || lowerMessage.includes('tech stack')) {
+      return "Priyanka is skilled in: JavaScript/TypeScript, React/Next.js, Node.js, Python, Java, Go, AWS/Cloud Infrastructure, Docker/Kubernetes. She has expertise in both frontend and backend development, cloud infrastructure, and system design.";
+    }
+    
+    // Projects queries
+    if (lowerMessage.includes('projects') || lowerMessage.includes('built') || lowerMessage.includes('products')) {
+      return "Priyanka has built several successful products including: StopScrolling.life, TechMentor, and CodeReview.ai. Her most notable project is StopScrolling.life, a digital wellness platform that has helped 10,000+ users.";
+    }
+    
+    // Education queries
+    if (lowerMessage.includes('education') || lowerMessage.includes('degree') || lowerMessage.includes('university')) {
+      return "Priyanka's education includes: Master of Science in Computer Science from Stanford University (2017), Bachelor of Engineering in Computer Science from University of California, Berkeley (2015).";
+    }
+    
+    // Consultation and booking queries
+    if (lowerMessage.includes('consultation') || lowerMessage.includes('help') || lowerMessage.includes('services') || lowerMessage.includes('book') || lowerMessage.includes('schedule')) {
+      return "Priyanka offers consultation services including: Product Development Strategy, Technical Architecture Review, Startup Technical Consulting, Engineering Team Building, and Code Review & Best Practices. You can book a 30-minute call at: https://calendly.com/shahasanepriyanka/30min";
+    }
+    
+    // General who/what queries
+    if (lowerMessage.includes('who') || lowerMessage.includes('what')) {
+      return "Priyanka is a Product Engineer and Entrepreneur with 8 years of experience. She has worked at Google and Microsoft, built successful products like StopScrolling.life, and now offers consultation services to help others with their technical and product challenges.";
     }
 
     return `I'm here to help! You can book a 30-minute consultation call with Priyanka at: https://calendly.com/shahasanepriyanka/30min`;

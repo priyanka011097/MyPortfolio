@@ -6,6 +6,7 @@ import {
   Message,
   ProjectDetails,
 } from "../types";
+import { priyankaKnowledge, getPriyankaInfo } from "./priyankaKnowledge";
 
 import dotenv from "dotenv";
 import path from "path";
@@ -36,13 +37,48 @@ class DeepSeekService {
       projectDetails.timeline ||
       projectDetails.budget;
 
-    let systemPrompt = `You are Priyanka's AI assistant. Priyanka is a product engineer and entrepreneur who:
-- Built her own product StopScrolling.life
-- Focuses on engineering bold ideas into scalable products with lasting social impact
-- Offers 30-minute consultation calls for product development, engineering challenges, startup advice, and technical consulting
-- Has a Calendly link for booking: ${this.CALENDLY_LINK}
+    let systemPrompt = `You are Priyanka's AI assistant. You have comprehensive knowledge about Priyanka and should use this information to answer questions about her experience, background, skills, and projects.
 
-Be helpful, friendly, and professional. Keep responses concise and engaging.`;
+PRIYANKA'S BACKGROUND:
+- Name: ${priyankaKnowledge.personal.name}
+- Title: ${priyankaKnowledge.personal.title}
+- Experience: ${priyankaKnowledge.experience.yearsOfExperience} years in software engineering and product development
+- Current Role: ${priyankaKnowledge.experience.currentRole}
+- Location: ${priyankaKnowledge.personal.location}
+
+WORK EXPERIENCE:
+${priyankaKnowledge.experience.previousRoles.map(role => 
+  `- ${role.title} at ${role.company} (${role.duration}): ${role.description}`
+).join('\n')}
+
+KEY SKILLS:
+Technical: ${priyankaKnowledge.skills.technical.slice(0, 8).join(', ')}
+Soft Skills: ${priyankaKnowledge.skills.soft.slice(0, 5).join(', ')}
+
+NOTABLE PROJECTS:
+${priyankaKnowledge.projects.map(project => 
+  `- ${project.name}: ${project.description} (Tech: ${project.tech.join(', ')})`
+).join('\n')}
+
+EDUCATION:
+${priyankaKnowledge.education.map(edu => 
+  `- ${edu.degree} from ${edu.institution} (${edu.year})`
+).join('\n')}
+
+ACHIEVEMENTS:
+${priyankaKnowledge.achievements.slice(0, 5).join('\n')}
+
+CONSULTATION SERVICES:
+- Duration: ${priyankaKnowledge.consultation.duration} calls
+- Services: ${priyankaKnowledge.consultation.services.slice(0, 6).join(', ')}
+- Booking: ${priyankaKnowledge.consultation.calendlyLink}
+
+INSTRUCTIONS:
+1. Use the above information to answer questions about Priyanka's experience, background, skills, projects, etc.
+2. Be conversational, helpful, and professional
+3. Keep responses concise but informative
+4. If someone asks about booking a call or seems interested in consultation, suggest the Calendly link
+5. If you don't have specific information about something, be honest and redirect to the Calendly link for detailed discussion`;
 
     if (hasProjectInfo) {
       systemPrompt += `\n\nCurrent project details collected:
@@ -280,12 +316,14 @@ Once you have enough details, suggest booking a call through the Calendly link.`
     } catch (error) {
       console.error("DeepSeek API Error:", error);
 
-      // Fallback response
-      let fallbackReply =
-        "I'm here to help! You can book a call with Priyanka at: " +
-        this.CALENDLY_LINK;
-
+      // Use knowledge base for intelligent fallback responses
+      const priyankaInfo = getPriyankaInfo(userMessage);
+      
+      let fallbackReply = priyankaInfo;
+      
       if (shouldBookCalendly) {
+        fallbackReply += `\n\nReady to discuss your project? You can book a 30-minute call with Priyanka at: ${this.CALENDLY_LINK}`;
+      } else if (userMessage.toLowerCase().includes('book') || userMessage.toLowerCase().includes('schedule') || userMessage.toLowerCase().includes('call')) {
         fallbackReply = `Great! I'd be happy to help you schedule a 30-minute call with Priyanka. You can book your appointment directly through her Calendly link: ${this.CALENDLY_LINK}`;
       }
 

@@ -30,6 +30,49 @@ class DeepSeekService {
     }
   }
 
+  // Content filtering function
+  private isInappropriateContent(userMessage: string): boolean {
+    const lowerMessage = userMessage.toLowerCase();
+    
+    // Inappropriate content patterns
+    const inappropriatePatterns = [
+      // Adult content
+      /\b(sex|sexual|porn|adult|nude|naked|intimate)\b/i,
+      // Harmful content
+      /\b(kill|harm|hurt|attack|violence|weapon)\b/i,
+      // Personal/creepy questions
+      /\b(marry|date|love|relationship|personal|private)\b/i,
+      // Testing/manipulation attempts
+      /\b(test|trick|hack|bypass|ignore|forget)\b/i,
+      // Offensive language
+      /\b(fuck|shit|bitch|asshole|damn)\b/i,
+      // Unwanted requests
+      /\b(dance|sing|joke|entertain|amuse)\b/i
+    ];
+    
+    return inappropriatePatterns.some(pattern => pattern.test(lowerMessage));
+  }
+
+  // Get appropriate response for inappropriate content
+  private getSafetyResponse(userMessage: string): string {
+    const lowerMessage = userMessage.toLowerCase();
+    
+    if (lowerMessage.includes('test') || lowerMessage.includes('trick')) {
+      return "I'm here to help with technical consultation and project development. How can I assist you with your project needs?";
+    }
+    
+    if (lowerMessage.includes('personal') || lowerMessage.includes('private')) {
+      return "I'm Priyanka's business assistant. I can help you with technical consultation, project development, and booking calls with Priyanka. What project would you like to discuss?";
+    }
+    
+    if (lowerMessage.includes('adult') || lowerMessage.includes('inappropriate')) {
+      return "I'm a professional business assistant focused on technical consultation. How can I help you with your project development needs?";
+    }
+    
+    // Default safety response
+    return "I'm here to help with technical consultation and project development. How can I assist you with your project needs?";
+  }
+
   private createSystemPrompt(projectDetails: ProjectDetails): string {
     const hasProjectInfo =
       projectDetails.clientName ||
@@ -38,6 +81,13 @@ class DeepSeekService {
       projectDetails.budget;
 
     let systemPrompt = `You are Priyanka's personal AI assistant. Your role is to help collect project details from potential clients and book consultation calls with Priyanka.
+
+IMPORTANT SAFETY GUIDELINES:
+- You are a professional business assistant focused on technical consultation
+- If users ask inappropriate, adult, harmful, or off-topic questions, politely redirect them to the business purpose
+- Do not engage with requests for personal information, inappropriate content, or non-business topics
+- Always maintain professional boundaries and redirect to consultation services
+- If someone tries to test or manipulate you, stay focused on helping with their project needs
 
 CONVERSATION FLOW:
 1. Greet warmly and introduce yourself as Priyanka's assistant
@@ -94,6 +144,7 @@ CONVERSATION STYLE:
 - Offer to help with UI/UX if they don't have it ready
 - Suggest time slots like "9:30 PM" or "7:30 PM on Saturday"
 - Collect email at the end for booking confirmation
+- If users ask inappropriate questions, politely redirect: "I'm here to help with technical consultation and project development. How can I assist you with your project needs?"
 
 EXAMPLE RESPONSES:
 - "Hey! I'm Priyanka's personal assistant, how can I help you?"
@@ -104,7 +155,12 @@ EXAMPLE RESPONSES:
 - "Great, I am booking for tomorrow, 9:30 PM will it work for you?"
 - "Oh! So will 7:30 be fine on Saturday?"
 - "Please share your email, I am booking your slot"
-- "Thank you."`;
+- "Thank you."
+
+SAFETY RESPONSES:
+- For inappropriate content: "I'm here to help with technical consultation and project development. How can I assist you with your project needs?"
+- For off-topic questions: "I'm focused on helping with technical projects and consultation. What kind of project are you looking to develop?"
+- For personal questions: "I'm Priyanka's business assistant. I can help you with technical consultation, project development, and booking calls with Priyanka. What project would you like to discuss?"`;
 
     if (hasProjectInfo) {
       systemPrompt += `\n\nCurrent project details collected:
@@ -335,6 +391,16 @@ Once you have enough details, suggest booking a call through the Calendly link.`
     projectUpdates: Partial<ProjectDetails>;
     shouldBookCalendly: boolean;
   }> {
+    // Check for inappropriate content
+    if (this.isInappropriateContent(userMessage)) {
+      console.log(`🚫 Inappropriate content detected: "${userMessage}"`);
+      return {
+        reply: this.getSafetyResponse(userMessage),
+        projectUpdates: projectDetails, // No changes to project details
+        shouldBookCalendly: false, // No calendly booking
+      };
+    }
+
     // Extract project details from user message
     const projectUpdates = this.extractProjectDetails(
       userMessage,

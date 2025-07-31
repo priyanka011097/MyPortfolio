@@ -2,24 +2,31 @@ import nodemailer from 'nodemailer';
 import { EmailData, ConversationContext, ProjectDetails } from '../types';
 
 class EmailService {
-  private transporter: nodemailer.Transporter;
+  private transporter: nodemailer.Transporter | null = null;
   private readonly TO_EMAIL = process.env.MAIL_TO || 'shahasanepriyanka@gmail.com';
 
-  constructor() {
-    const mailUser = process.env.MAIL_USER;
-    const mailPass = process.env.MAIL_PASS;
+  private getTransporter(): nodemailer.Transporter {
+    if (!this.transporter) {
+      const mailUser = process.env.MAIL_USER;
+      const mailPass = process.env.MAIL_PASS;
 
-    if (!mailUser || !mailPass) {
-      throw new Error('MAIL_USER and MAIL_PASS are required in environment variables');
+      if (!mailUser || !mailPass) {
+        throw new Error('MAIL_USER and MAIL_PASS are required in environment variables');
+      }
+
+      this.transporter = nodemailer.createTransporter({
+        service: 'gmail',
+        auth: {
+          user: mailUser,
+          pass: mailPass,
+        },
+      });
     }
+    return this.transporter;
+  }
 
-    this.transporter = nodemailer.createTransporter({
-      service: 'gmail',
-      auth: {
-        user: mailUser,
-        pass: mailPass,
-      },
-    });
+  constructor() {
+    // Constructor no longer checks environment variables immediately
   }
 
   private formatProjectDetails(projectDetails: ProjectDetails): string {
@@ -136,7 +143,7 @@ class EmailService {
         text: this.createTextVersion(conversationContext, reason)
       };
 
-      const info = await this.transporter.sendMail({
+      const info = await this.getTransporter().sendMail({
         from: process.env.MAIL_USER,
         to: emailData.to,
         subject: emailData.subject,
@@ -185,7 +192,7 @@ class EmailService {
   // Test email functionality
   async testConnection(): Promise<boolean> {
     try {
-      await this.transporter.verify();
+      await this.getTransporter().verify();
       console.log('✅ Email service connection verified');
       return true;
     } catch (error) {

@@ -2,14 +2,19 @@ import axios from 'axios';
 import { DeepSeekRequest, DeepSeekResponse, DeepSeekMessage, Message, ProjectDetails } from '../types';
 
 class DeepSeekService {
-  private readonly API_KEY = process.env.DEEPSEEK_API_KEY;
   private readonly API_URL = 'https://api.deepseek.com/v1/chat/completions';
   private readonly CALENDLY_LINK = 'https://calendly.com/shahasanepriyanka/30min';
 
-  constructor() {
-    if (!this.API_KEY) {
+  private get API_KEY(): string {
+    const apiKey = process.env.DEEPSEEK_API_KEY;
+    if (!apiKey) {
       throw new Error('DEEPSEEK_API_KEY is required in environment variables');
     }
+    return apiKey;
+  }
+
+  constructor() {
+    // Constructor no longer checks API key immediately
   }
 
   private createSystemPrompt(projectDetails: ProjectDetails): string {

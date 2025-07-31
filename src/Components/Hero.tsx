@@ -175,14 +175,14 @@ const Hero = () => {
             }}
             aria-label="Chat with AI Assistant"
           >
-            🤖
+            
           </button>
           <span
             style={{
               position: "absolute",
               whiteSpace: "nowrap",
-              bottom: "50px",
-              right: "110px",
+              bottom: "60px",
+              right: "130px",
               color: "#fff",
               fontWeight: "bold",
               fontSize: "1rem",

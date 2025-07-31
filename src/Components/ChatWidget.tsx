@@ -36,20 +36,17 @@ export default function ChatWidget({ onClose }: ChatWidgetProps) {
 
     const userMessage = input.trim();
     setInput("");
-    
-    // Add user message
+
     setMessages((prev) => [
       ...prev,
       { from: "user", text: userMessage, timestamp: new Date() },
     ]);
 
-    // Show typing indicator
     setIsTyping(true);
 
     try {
       const reply = await getBotReply(userMessage);
-      
-      // Add bot reply
+
       setMessages((prev) => [
         ...prev,
         { from: "bot", text: reply, timestamp: new Date() },
@@ -107,20 +104,32 @@ export default function ChatWidget({ onClose }: ChatWidgetProps) {
               width: "40px",
               height: "40px",
               borderRadius: "50%",
-              background: "radial-gradient(circle, rgb(255, 255, 255), rgb(0, 247, 255))",
+              background:
+                "radial-gradient(circle, rgb(255, 255, 255), rgb(0, 247, 255))",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               fontSize: "20px",
             }}
-          >
-            🤖
-          </div>
+          ></div>
           <div>
-            <h4 style={{ color: "#fff", margin: 0, fontSize: "16px", fontWeight: "bold" }}>
+            <h4
+              style={{
+                color: "#fff",
+                margin: 0,
+                fontSize: "16px",
+                fontWeight: "bold",
+              }}
+            >
               Priyanka's AI Assistant
             </h4>
-            <p style={{ color: "rgba(255, 255, 255, 0.7)", margin: 0, fontSize: "12px" }}>
+            <p
+              style={{
+                color: "rgba(255, 255, 255, 0.7)",
+                margin: 0,
+                fontSize: "12px",
+              }}
+            >
               Online • Ready to help
             </p>
           </div>
@@ -163,12 +172,12 @@ export default function ChatWidget({ onClose }: ChatWidgetProps) {
             style={{
               display: "flex",
               flexDirection: "column",
-              alignItems: msg.from === "user" ? "flex-end" : "flex-start",
+              alignSelf: msg.from === "user" ? "flex-end" : "flex-start",
+              width: "100%",
             }}
           >
             <div
               style={{
-                maxWidth: "80%",
                 padding: "12px 16px",
                 borderRadius: "18px",
                 backgroundColor:
@@ -178,8 +187,15 @@ export default function ChatWidget({ onClose }: ChatWidgetProps) {
                 color: "#fff",
                 fontSize: "14px",
                 lineHeight: "1.4",
-                wordWrap: "break-word",
-                border: msg.from === "user" ? "1px solid rgba(0, 247, 255, 0.3)" : "none",
+                border:
+                  msg.from === "user"
+                    ? "1px solid rgba(0, 247, 255, 0.3)"
+                    : "none",
+                wordBreak: "break-all",
+                overflowWrap: "break-word",
+                whiteSpace: "normal",
+                overflowX: "hidden",
+                maxWidth: "85%",
               }}
             >
               {msg.text}
@@ -197,7 +213,7 @@ export default function ChatWidget({ onClose }: ChatWidgetProps) {
             </span>
           </div>
         ))}
-        
+
         {isTyping && (
           <div style={{ display: "flex", alignItems: "flex-start", gap: "8px" }}>
             <div
@@ -211,9 +227,7 @@ export default function ChatWidget({ onClose }: ChatWidgetProps) {
                 justifyContent: "center",
                 fontSize: "16px",
               }}
-            >
-              🤖
-            </div>
+            ></div>
             <div
               style={{
                 padding: "12px 16px",
@@ -224,33 +238,18 @@ export default function ChatWidget({ onClose }: ChatWidgetProps) {
                 alignItems: "center",
               }}
             >
-              <div
-                style={{
-                  width: "8px",
-                  height: "8px",
-                  borderRadius: "50%",
-                  backgroundColor: "rgba(0, 247, 255, 0.8)",
-                  animation: "typing 1.4s infinite ease-in-out",
-                }}
-              />
-              <div
-                style={{
-                  width: "8px",
-                  height: "8px",
-                  borderRadius: "50%",
-                  backgroundColor: "rgba(0, 247, 255, 0.8)",
-                  animation: "typing 1.4s infinite ease-in-out 0.2s",
-                }}
-              />
-              <div
-                style={{
-                  width: "8px",
-                  height: "8px",
-                  borderRadius: "50%",
-                  backgroundColor: "rgba(0, 247, 255, 0.8)",
-                  animation: "typing 1.4s infinite ease-in-out 0.4s",
-                }}
-              />
+              {[0, 0.2, 0.4].map((delay, i) => (
+                <div
+                  key={i}
+                  style={{
+                    width: "8px",
+                    height: "8px",
+                    borderRadius: "50%",
+                    backgroundColor: "rgba(0, 247, 255, 0.8)",
+                    animation: `typing 1.4s infinite ease-in-out ${delay}s`,
+                  }}
+                />
+              ))}
             </div>
           </div>
         )}
@@ -289,7 +288,7 @@ export default function ChatWidget({ onClose }: ChatWidgetProps) {
               padding: "12px 16px",
               borderRadius: "50%",
               border: "none",
-              background: input.trim() 
+              background: input.trim()
                 ? "radial-gradient(circle, rgb(255, 255, 255), rgb(0, 247, 255))"
                 : "rgba(255, 255, 255, 0.2)",
               color: "#000",

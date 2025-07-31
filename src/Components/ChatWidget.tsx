@@ -16,6 +16,7 @@ export default function ChatWidget({ onClose }: ChatWidgetProps) {
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const sessionId = useRef<string | null>(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -23,6 +24,44 @@ export default function ChatWidget({ onClose }: ChatWidgetProps) {
 
   useEffect(() => {
     scrollToBottom();
+  }, [messages]);
+
+  // Send final email when user leaves
+  const sendFinalEmail = async () => {
+    if (sessionId.current && messages.length > 1) {
+      try {
+        const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001';
+        await fetch(`${API_BASE_URL}/api/chat/end-session`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ sessionId: sessionId.current })
+        });
+      } catch (error) {
+        console.error('Failed to send final email:', error);
+      }
+    }
+  };
+
+  // Handle page unload
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      sendFinalEmail();
+    };
+
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'hidden') {
+        sendFinalEmail();
+      }
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      sendFinalEmail(); // Send email when component unmounts
+    };
   }, [messages]);
 
   const sendMessage = async () => {
@@ -42,12 +81,17 @@ export default function ChatWidget({ onClose }: ChatWidgetProps) {
 
     try {
       console.log('🔄 Getting bot reply...');
-      const reply = await getBotReply(userMessage);
-      console.log('🤖 Bot reply received:', reply);
+      const response = await getBotReply(userMessage);
+      console.log('🤖 Bot reply received:', response);
+
+      // Store session ID from response
+      if (response.sessionId) {
+        sessionId.current = response.sessionId;
+      }
 
       setMessages((prev) => [
         ...prev,
-        { from: "bot", text: reply, timestamp: new Date() },
+        { from: "bot", text: response.reply, timestamp: new Date() },
       ]);
     } catch (error) {
       console.error("❌ Error getting bot reply:", error);

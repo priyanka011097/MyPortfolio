@@ -316,21 +316,30 @@ Once you have enough details, suggest booking a call through the Calendly link.`
     } catch (error) {
       console.error("DeepSeek API Error:", error);
 
-      // Use knowledge base for intelligent fallback responses
-      const priyankaInfo = getPriyankaInfo(userMessage);
-      
-      let fallbackReply = priyankaInfo;
+      // Check if the error is due to missing API key
+      if (!this.API_KEY || this.API_KEY === 'your_deepseek_api_key_here') {
+        return {
+          reply: "I apologize, but the AI service is not properly configured. Please contact the administrator to set up the DeepSeek API key. In the meantime, you can book a call with Priyanka directly at: " + this.CALENDLY_LINK,
+          projectUpdates,
+          shouldBookCalendly: true,
+        };
+      }
+
+      // For other API errors, provide a more generic response
+      let fallbackReply = "I'm having trouble connecting to the AI service right now. ";
       
       if (shouldBookCalendly) {
-        fallbackReply += `\n\nReady to discuss your project? You can book a 30-minute call with Priyanka at: ${this.CALENDLY_LINK}`;
+        fallbackReply += `You can book a 30-minute call with Priyanka to discuss your project: ${this.CALENDLY_LINK}`;
       } else if (userMessage.toLowerCase().includes('book') || userMessage.toLowerCase().includes('schedule') || userMessage.toLowerCase().includes('call')) {
         fallbackReply = `Great! I'd be happy to help you schedule a 30-minute call with Priyanka. You can book your appointment directly through her Calendly link: ${this.CALENDLY_LINK}`;
+      } else {
+        fallbackReply += "You can book a call with Priyanka to discuss your questions: " + this.CALENDLY_LINK;
       }
 
       return {
         reply: fallbackReply,
         projectUpdates,
-        shouldBookCalendly,
+        shouldBookCalendly: true,
       };
     }
   }

@@ -13,7 +13,7 @@ class EmailService {
       throw new Error('MAIL_USER and MAIL_PASS are required in environment variables');
     }
 
-    this.transporter = nodemailer.createTransporter({
+    this.transporter = nodemailer.createTransport({ 
       service: 'gmail',
       auth: {
         user: mailUser,
@@ -23,7 +23,7 @@ class EmailService {
   }
 
   private formatProjectDetails(projectDetails: ProjectDetails): string {
-    const details = [];
+ const details: string[] = [];
     
     if (projectDetails.clientName) {
       details.push(`<strong>Client Name:</strong> ${projectDetails.clientName}`);

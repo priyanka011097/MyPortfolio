@@ -1,3 +1,6 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 export interface Message {
   from: 'user' | 'bot';
   text: string;

@@ -160,10 +160,10 @@ export default function Home() {
 
       {/* BIG NAV */}
       <section className="big-nav">
-        <Link to="/works">
+        <Link to="/experience">
           EXPERIENCE <ArrowRight />
         </Link>
-        <Link to="/gallery">
+        <Link to="/projects">
           PROJECTS <ArrowRight />
         </Link>
       </section>

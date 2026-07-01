@@ -3,8 +3,8 @@ import { LinkedInIcon, GitHubIcon, MailIcon, WhatsAppIcon } from './icons.jsx'
 
 const nav = [
   { to: '/', label: 'HOME' },
-  { to: '/works', label: 'EXPERIENCE' },
-  { to: '/gallery', label: 'PROJECTS' },
+  { to: '/experience', label: 'EXPERIENCE' },
+  { to: '/projects', label: 'PROJECTS' },
 ]
 
 export default function Sidebar() {

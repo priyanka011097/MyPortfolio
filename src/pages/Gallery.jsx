@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 const items = [
   { title: 'ProEase Global', role: 'Full Stack Developer', type: 'E-commerce', link: 'https://proeaseglobal.com/', img: '/previews/proease.png', g: 'linear-gradient(135deg, #3a1f2b, #74405e)' },
   { title: 'FlatsWale', role: 'Co-founder', type: 'Website', link: 'https://www.flatswale.com/', img: '/previews/flatswale.png', g: 'linear-gradient(135deg, #06222b, #0d4754)' },
+  { title: 'Interview Study Cards', role: 'Full Stack Developer', type: 'Web App', link: 'https://jolly-tooth-11c7.shahasanepriyanka.workers.dev/', img: '/previews/interviewcards.png', g: 'linear-gradient(135deg, #1a2340, #3a4a8a)' },
 ]
 
 const reveal = {
